@@ -11,10 +11,270 @@
 
 ## 스타일 형식 
 
+![image1](https://raw.githubusercontent.com/yonggyo1125/lecture_html_css/master/05%20CSS%20%EA%B8%B0%EC%B4%88/images/1.png)
+
+- 선택자(selector) : 스타일 규칙을 어디에 적용할 것인지를 나타냅니다. 
+- 선택자 다음에 중괄호({, })가 오고 그 사이에 속성을 입력하는데 중괄호 안에 들어가는 속성과 속성 값은 콜론(;)으로 구분해 '속성:속성 값'과 같은 형식으로 표시하며 속성과 속성 값 쌍 다음에는 세미콜론(;)으로 구분합니다. 그래서 속성 두 개를 적용한다면 다음과 같이 쓸 수 있습니다. 
+
+```css
+p { color: blue; font-size: 16px; } /* 텍스트 단락의 글자 색, 글자 크기 16px */
+```
+
+```css
+h2 { font-size: 20px; color: orange; } /* 2단계 제목의 글자 크기 20px, 글자 색상 주황색 */
+p { color: blue; } /* 텍스트 단락의 글자 색 파란색 */
+```
+
+## 스타일을 표기하는 방법
+- 개발자가 읽기 쉽고 유지,보수가 쉬우려면 여러줄에 걸쳐 작성하는 것이 좋습니다.
+- 하기 소스는 모두 같은 소스입니다.
+- HTML 문서처럼 CSS에서도 소스 공백을 무시합니다.
+
+```css
+h2 { font-size: 20px; color: orange; }
+```
+
+```css
+h2 {
+    font-size: 20px; 
+    color: orange; 
+}
+```
+
+```css
+h2 
+{
+    font-size: 20px; 
+    color: orange; 
+}
+```
+
+## 스타일 주석 
+
+- 주석을 표시할 때는 /*와 */ 사이에 내용을 입력하는데 주석을 한 줄만 입력하거나 여러 줄을 입력할 수도 있습니다.  
+
+```html
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>CSS 적용해 보기</title>
+    <style>
+      /* h2 제목과
+        텍스트 단락의 
+        스타일을 조절해 보자
+      */
+      h2{
+        font-size:20px;  /* 글자 크기 20픽셀 */
+        color:orange;  /* 글자색 오렌지 */
+      }
+      p {
+        color:blue;   /* 글자색 파랑 */
+      }
+    </style>
+	</head>
+	<body>
+		<h1>CSS</h1>
+		<h2>웹 문서의 디자인과 내용을 분리합니다</h2>
+		<p>웹 표준에 의한 웹 문서는 디자인과 내용이 분리되어 있습니다.</p>
+		<p>내용은 HTML을 이용해 구성하고, 디자인은 CSS를 이용해 꾸미는 것입니다.</p>
+	</body>
+</html>
+```
+
+## 스타일과 스타일 시트 
+
+### 내부 스타일 시트 
+- 웹 문서 안에서 사용할 스타일을 문서 안에 정리한 것을 <code>내부 스타일 시트</code>라고 합니다. 
+- 스타일 정보는 웹 문서를 브라우저 화면에 표시하기 전에 결정되어야 하기 때문에 모든 스타일 정보는 \<head\> 태그와 \</head\> 태그 안에서 정의해야 하고 \<style\> 태그와 \</style\> 태그 사이에 작성합니다. 
+
+
+```html
+<!doctype html>
+<html lang="ko">
+<head>
+    <title>온라인 프로필</title>
+	<meta charset="utf-8">
+    <style>
+        section {
+            width:500px;  /* 너비 */
+            padding:15px;  /* 테두리와 내용 사이의 여백 */
+            border:5px solid gray;  /* 테두리 스타일 */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+    <!-- 자기 소개 -->
+        <section>
+            <h2>Who am I?</h2>
+            <p>프런트엔드 웹 기술(Front-end Web Tech.)에 관심이 많습니다.<br>
+            현재 제주의 한 시골 마을에서 코딩 중입니다.</p>
+        </section>
+    </div>
+</body>
+</html>
+```
+
+### 외부 스타일 시트 
+
+- 웹사이트를 만들 때 하나의 웹 문서로 끝나는 경우는 거의 없습니다. 대부분의 경우, 디자인의 일관성을 위해 같은 스타일을 여러 웹 문서에 사용합니다. 그런데 그 때마다 각 웹문서마다 똑같은 내부 스타일 시트를 만든다면 서버 공간은 물론 문서를 다운로드하는 시간까지 낭비될 것입니다. 따라서 사이트를 제작할 때는 여러 웹 문서에서 사용할 스타일을 별도 파일로 저장해 놓고 필요할 때마다 파일에서 가져와 사용하는 것이 일반적입니다. 
+- 이렇게 따로 저장해 놓은 스타일 정보를 <code>외부 스타일 시트</code>라고 하고 <code>.css</code>라는 파일 확장자를 사용합니다.
+- 외부 스타일 시트를 연결할 때는 \<style\> 태그 없이 \<link\> 태그만 사용해 미리 만들어 놓은 외부 스타일 시트 파일을 연결합니다. 
+
+```html
+<link rel="stylesheet" href="외부 스타일 파일 경로">
+```
+
+> 외부 스타일 시트를 연결할 때 <link> 태그 말고도 @import문을 사용할 수 있습니다.
+
+```html
+<!doctype html>
+<html lang="ko">
+<head>
+    <title>온라인 프로필</title>
+	<meta charset="utf-8">
+    <style>
+        section {
+            width:500px;  /* 너비 */
+            padding:15px;  /* 테두리와 내용 사이의 여백 */
+            border:5px solid gray;  /* 테두리 스타일 */
+        }
+    </style>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="container">
+    <!-- 자기 소개 -->
+        <section>
+            <h2>Who am I?</h2>
+            <p>프런트엔드 웹 기술(Front-end Web Tech.)에 관심이 많습니다.<br>
+            현재 제주의 한 시골 마을에서 코딩 중입니다.</p>
+        </section>
+    </div>
+</body>
+</html>
+```
+
+> css/style.css
+
+```css
+h2 {
+  color:blue; /* 글자 색 */
+}
+p {
+  font-size:0.9em;  /* 글자 크기 */
+  line-height: 2.0;  /* 줄간격 */
+}
+```
+
+### 인라인 스타일 
+
+- 간단한 스타일 정보라면 스타일 시트를 사용하지 않고 스타일을 적용할 대상에 직접 표시합니다. 이런 방법을 <code>인라인 스타일</code>이라고 합니다. 
+- 스타일을 적용하고 싶은 부분이 있다면 해당 태그에 style 속성을 사용해 style="속성: 속성 값;" 형태로 스타일을 바꿀 수 있습니다.
+
+```html
+<h1>블루베리와 항산화 효능</h1>
+<p style="color:blue;"> 블루베리는 항산화제인 안토시아닌과 폴리페놀을 다량 포함하고 있습니다.</p>
+<p>매사츄세츠 보스톤에 있는 USDA 노화에 관한 인류 영양 연구센터 (the USDA Human Nutrition Research Center on Aging) 의 자료에 의하면
+   블루베리는 과일 중에서 가장 항산화 작용이 뛰어난 과일이라고 합니다.</p>
+```
 
 ---
 
 # 주요 선택자
+
+## 전체 선택자 - 모든 요소에 스타일 적용하기 
+- 스타일을 모든 요소에 적용할 때 사용합니다.
+- 전체 선택ㄹ자로 *(별표)를 사용합니다. 
+- 문서의 여백이나 글꼴 크기 등 기본 스타일을 초기화할 때 사용합니다. 
+
+```css
+* { 속성: 속성값; 속성: 속성값; ... }
+```
+
+## 태그 선택자 - 특정 태그를 사용한 요소에 스타일 적용하기 
+
+```css 
+태그 { 스타일 }
+```
+
+```css
+p {
+    font-size: 12px;  /* 글자 크기 */
+    font-family: 돋움; /* 글꼴 */
+}
+```
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>블루베리(Blueberry)</title>    
+    <style>
+      h2 {
+        color:blue;
+      }
+      p{
+        font-size:12px;
+        margin-left:20px;
+      }
+    </style>
+</head>
+<body>
+  <h1>블루베리에 관한 연구</h1>
+  <h2>블루베리와 항산화 효능</h2> 
+  <p>블루베리는 항산화제인 안토시아닌과 폴리페놀을 다량 포함하고 있습니다.</p>
+  <p>매사츄세츠 보스톤에 있는 USDA 노화에 관한 인류 영양 연구센터 (the USDA Human Nutrition Research Center on Aging) 의 자료에 의하면
+   블루베리는 과일 중에서 가장 항산화 작용이 뛰어난 과일이라고 합니다.  </p>
+  <h2>블루베리와 노화</h2> 
+  <p> USDA 인류 영양 연구센터(the USDA Human Nutrition Research Center) 실험실에서 신경과학자들은 쥐들에게 블루베리를 먹임으로써 
+  노화에 의한 인지능력의 손실을 예방해 준다는 사실을 발견하였습니다. </p>
+</body>
+</html>
+```
+
+> 태그(tag)와 요소(element)는 어떻게 다른가요?
+> 
+> HTML 관련 서적이나 기사를 보면 <code>태그</code>나 <code>요소</code>라는 용어를 자주 만납니다. 비슷해 보이는 태그와 요소는 어떻게 다를까요? 태그는 말 그대로 태그 자체를 가리키는 반면, 요소는 태그가 적용된 것을 가리킵니다. 
+
+
+## 클래스 선택자 - 특정 부분에 스타일 적용하기
+
+- 클래스 선택자는 태그 대신 클래스 이름을 사용 
+- 클래스 이름은 기억하기 쉬운 이름을 임의로 지정하면 됩니다. 
+- 클래스 이름 앞에는 반드시 마침표(.)를 붙여야 합니다.
+
+```css 
+.클래스명 { 스타일 }
+```
+
+```css
+.bluetext {
+    color: blue; /* 글자 색 */
+}
+```
+
+```html
+<style>
+    .bluetext {
+       color:blue;
+     }
+</style>
+
+<h2 class="bluetext">이지스퍼블리싱의 미션</h2>
+<p class="bluetext">정보의 지름길을 만들어 빠르게 원하는 곳으로 가도록 도와주는 책.
+    손에 잡히는 이익을 얻을 수 있도록 도움이 되는 책을 만들고 싶습니다.</p>
+```
+
+## id 선택자 - 특정 부분에 스타일 적용하기
+
+
+
+## 그룹 선택자 - 둘 이상 요소에 같은 스타일 적용하기
 
 --- 
 
