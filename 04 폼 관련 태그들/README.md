@@ -578,8 +578,126 @@
 
 # 여러 데이터 나열해 보여 주기
 
+## \<selet\>, \<optgroup\>, \<option\> 태그 - 드롭다운 목록 만들기
 
+- 드롭다운 목록은 \<select\> 태그와 \<option\> 태그를 이용해 표시합니다.
+
+```html
+<select 속성="속성값">
+    <option value="값" [속성="속성 값"]>내용1</option>
+    <option value="값" [속성="속성 값"]>내용2</option>
+    <option value="값" [속성="속성 값"]>내용2</option>
+    ...
+</select>
+```
+
+### \<select\> 태그의 속성
+
+|속성| 설명                                                                                                             |
+|---|----------------------------------------------------------------------------------------------------------------|
+|size| 화면에 표시될 드롭다운 메뉴의 항목 개수를 지정한다.<br>크롬 브라우저의 경우 size에서 지정한 개수보다 하나 더 많은 옵션이 표시됩니다. size="3" 으로 지정하면 4개의 옵션이 표시됩니다.|
+|multiple|브라우저 화면에 여러 개의 옵션이 함께 표시되면서 [CTRL] 키를 누른 상태로 드롭다운 메뉴에 있는 여러 항목을 선택할 수 있습니다.|
+
+### \<option\> 태그의 속성
+
+- 드롭다운 목록에 표시되는 옵션들은 \<option\> 태그를 이용해서 지정
+
+|속성|설명|
+|---|----|
+|value|옵션을 선택했을 때 서버로 넘겨질 값을 지정합니다.|
+|selected|화면에 표시될 때 기본으로 선택되어 있는 옵션을 지정합니다.|
+
+
+```html
+<label class="reg" for="class">학과</label>
+<select size="5" id="class" multiple>
+    <option value="archi">건축공학과</option>
+	<option value="mechanic">기계공학과</option>
+	<option value="indust">산업공학과</option>
+	<option value="elec">전기전자공학과</option>
+	<option value="computer" selected>컴퓨터공학과</option>
+	<option value="chemical">화학공학과</option>
+</select>
+```
+
+### \<optgroup\> 태그 - 옵션끼리 묶기
+
+- 드롭다운 목록에서 여러 항목들을 몇 가지 그룹으로 묶어야 할 경우 사용
+- label 속성을 사용해 그룹의 제목을 붙입니다. 
+
+```html
+<label class="reg" for="class">학과</label>
+<select id="class">
+    <optgroup label="공과대학">
+        <option value="archi">건축공학과</option>
+        <option value="mechanic">기계공학과</option>
+        <option value="indust">산업공학과</option>
+        <option value="elec">전기전자공학과</option>
+        <option value="computer">컴퓨터공학과</option>
+        <option value="chemical">화학공학과</option>
+    </optgroup>
+    <optgroup label="인문대학">
+        <option value="history">사학과</option>
+        <option value="lang">어문학부</option>
+        <option value="philo">철학</option>
+    </optgroup>
+</select>
+```
+
+## \<datalist\> 태그, \<option\> 태그
+- 데이터 목록중에서 값을 선택하도록 만들 수 있습니다. 
+- 텍스트 필드에 직접 값을 입력하는 것이 아니라 데이터 목록에 제시한 값 중에서 선택하면 그 값이 자동으로 입력됩니다. 
+- 데이터 목록은 텍스트 필드와 함께 사용하기 때문에 \<input\> 태그를 함께 사용합니다. 사용하는 방법은 \<input\> 태그의 list 속성 값과 데이터 목록의 id를 같게 만들면 됩니다. 
+
+```html
+<input type="text" list="데이터 목록 id">
+<datalist id="데이터 목록 id">
+    <option> ... </option>
+    <option> ... </option>
+    ...
+</datalist>
+```
+
+|속성|설명|
+|---|----|
+|value|사용자가 테이블을 선택했을 때 서버로 넘겨질 값을 지정합니다.|
+|label|사용자를 위해 브라우저에 표시할 레이블입니다. 따로 지정하지 않을 경우, value 값을 레이블로 사용합니다.|
+
+
+```html
+<input type="text" id="interest" list="choices">
+<datalist id="choices">
+    <option value="grammar" label="문법"></option>
+    <option value="voca" label="어휘"></option>
+    <option value="speaking" label="회화"></option>
+    <option value="listening" label="리스닝"></option>
+    <option value="news" label="뉴스청취"></option>
+</datalist>
+```
+
+## \<textarea\> 태그 - 여러 줄 입력하는 텍스트 영역 만들기
+- 한 줄 이상의 문장을 입력할 때 사용하는 폼을 말합니다. 
+- 게시판에서 게시물을 입력하거나 회원가입 양식에서 사용자 약관을 표시할 때 자주 사용합니다. 
+
+|속성|설명|
+|---|----|
+|name|다른 폼 요소와 구분하기 위해 텍스트 영역의 이름을 지정합니다.|
+|cols|텍스트 영역의 가로 너비를 문자 단위로 지정합니다.|
+|rows|텍스트 영역의 세로 길이를 줄 단위로 지정합니다. 지정한 숫자보다 줄 개수가 많아지면 스크롤 막대가 생깁니다.|
+
+```html
+<textarea name="intro" cols="60" rows="5">
+열심히 사는 사람들의 손을 잡아주는 곳 - 이지스 퍼블리싱
+
+우리는 책을 내기 전에 다시 한번 물어봅니다
+"이 책이 사람들에게 도움이 되는가?"
+
+더 쉽게, 더 빠르게 지식을 전달하고 싶습니다.
+이지스퍼블리싱의 책과 앱을 만나보세요.
+</textarea>
+```
 
 ---
+
 
 # 기타 다양한 폼 요소들
