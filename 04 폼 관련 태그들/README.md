@@ -699,5 +699,122 @@
 
 ---
 
-
 # 기타 다양한 폼 요소들
+
+## \<button\> 태그 - 버튼 넣기
+- \<button\> 태그를 이용해도 폼을 전송하거나 리셋(reset)하기 위한 버튼을 삽입할 수 있습니다.
+
+```html
+<button [type="submit | reset | button"\> 내용 </button>
+```
+
+- \<button\> 태그의 type 속성은 버튼이 활성화되었을 때 어떤 동작을 할지 지정합니다. 
+- 선택할 수 있는 값은 submit와 reset, button 중 하나이고 지정하지 않으면 submit로 간주합니다. 
+
+|속성 값|설명|
+|---|-----|
+|submit|폼을 서버로 전송합니다. \<button type="submit"\> 전송하기 \</button\>과 같이 사용합니다.|
+|reset|폼에 입력한 모든 내용을 초기화시킵니다. \<button type="reset"\> 다시 쓰기 \</button\>과 같이 사용합니다.|
+|button|버튼 형태만 만들 뿐 자체 기능은 없습니다. \<button type="button"\> 주소 입력 \</button\>과 같이 사용합니다.|
+
+
+```html
+<input type="submit" value="전송하기"> 
+<button type="submit">전송하기</button>
+```
+
+```html
+<form>
+    <button type="submit" class="subm">
+        <img src="images/tick.png" alt=""> 전송하기
+    </button>
+</form>
+```
+
+## \<output\> 태그 - 계산 결과
+
+- 입력하는 값이 계산 결과라는 것을 브라우저에게 알려 줍니다. 
+
+```html
+<output [속성="속성 값"]> 내용 </output>
+```
+
+```html
+<form oninput="result.value=parseInt(num1.value)+parseInt(num2.value)">
+    <input type="number" name="num1" value="0">
+    +<input type="number" name="num2" value="0">
+    =<output name="result" for="num"></output>
+</form>
+```
+
+## \<progress\> 태그 - 진행 상태 보여주기
+
+- 작업 진행 상태를 나타낼 때 사용하는 태그입니다. 
+
+```html
+<progress value="값" [max="값"]></progress>
+```
+
+|속성|설명|
+|---|----|
+|value|작업 진행 상태를 나타내며 부동 소수점으로 표현합니다. 이 값은 0보다 크거나 같고 max 값보다 작거나 같아야 합니다. 만약 max 값이 지정되지 않았다면 이 값은 1.0보다 작아야 합니다.|
+|max|작업이 완료되려면 얼마나 많은 작업을 해야 하는지 부동 소수점으로 표현합니다. 이 값은 0보다 커야 합니다.|
+
+```html
+<ul>
+    <li>
+        <label>10초 남음</label>
+		<!-- 전체 60초 중 50초 진행 -->
+		<progress value="50" max="60"> </progress>
+    </li>
+    <li>
+        <label>진행률 30%</label>
+		<!-- 전체 100 중 30만큼 진행 -->
+    	<progress value="30" max="100"></progress> 
+    </li>
+</ul>
+```
+
+> 자바스크립트를 이용하면 \<progress\> 막대의 진행을 순차적으로 계속 진행시켜 마치 애니메이션처럼 보이게 할 수 있습니다.
+
+
+## \<meter\> 태그 - 값이 차지하는 크기 표시하기
+
+- 진행 상황을 나타내는 \<progress\> 태그와 달리 \<meter\> 태그는 전체 크기 중에서 얼마나 차지하는지를 표현할 때 사용
+- \<meter\> 태그에서 사용할 수 있는 속성은 다음과 같습니다. 
+
+|속성|설명|
+|---|----|
+|min,max|범위의 최솟값과 최대값을 나타냅니다. 값을 정하지 않으면 0과 1로 간주합니다.|
+|value|범위 내에서 차지하는 값을 나타냅니다.|
+|low|"이 정도면 낮다."라고 할 정도의 값을 지정합니다.|
+|high|"이 정도면 높다."라고 할 정도의 값을 지정합니다.|
+|optimum|"이 정도면 적당하다." 라고 할 정도의 범위를 지정합니다. optimum값이 high 값보다 크다면 value 값이 클수록 좋고 optimum 값이 low 값보다 작다면 value 값보다 작을 수록 좋습니다.|
+
+> high 값이나 low 값이 지정되어 있으면 현재 값(value)이 높은지 낮은지 비교할 수 있습니다. 그 정도를 색상으로 표시할 수도 있습니다.
+
+```html
+<ul>
+    <li>
+      	<label>점유율 0.8 </label>
+	  	<!-- 전체 크기 1을 기준으로 0.8만큼 차지합니다 -->
+		<meter value="0.8"></meter>
+    </li>
+    <li>
+      	<label>사용량 64%</label>
+		<!-- 전체 100 중에서 64만큼 차지합니다  -->
+		<meter min="0" max="100" value="64"></meter>
+    </li>
+    <li>
+      	<label>트래픽 초과</label>
+		<!-- 전체 크기는 1024~10240까지인데 높다고 설정한 8192보다 현재 값 9216이 더 큽니다 -->
+      	<meter min="1024" max="10240" low="2048" high="8192" value="9216"></meter>        
+    </li>
+    <li>
+      	<label>적절한 트래픽</label>
+		<!-- 전체 1 중에서 현재 0.5를 차지하고 있으며 적정도를 0.8로 설정했습니다 -->
+        <meter value="0.5" optimum="0.8"></meter>
+    </li>
+</ul>
+```
+
