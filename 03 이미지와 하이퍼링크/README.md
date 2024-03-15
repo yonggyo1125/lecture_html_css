@@ -255,8 +255,35 @@ body {
 
 - \<area\> 태그에서 사용할 수 있는 속성
 
+![image1](https://raw.githubusercontent.com/yonggyo1125/lecture_html_css/master/03%20%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%99%80%20%ED%95%98%EC%9D%B4%ED%8D%BC%EB%A7%81%ED%81%AC/images/1.png)
 
+- 예를 들어 (0,0)에서 (80,100) 위치까지 사각 형태의 영역을 클릭했을 때 페이스북 사이트로 연결되게 하려면 다음과 같이 사용합니다.
 
----
+```html
+<map name="fb">
+    <area shape="rect" coords="0,0,80,100" href="http://www.facebook.com" alt="페이스북">
+</map>
+```
 
-# SVG 이미지 
+```html
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>이미지맵</title>
+	<style>
+		a {
+			text-decoration:none
+		}
+	</style>
+</head>
+
+<body>
+<img src="images/kids.jpg"  alt="" usemap="#favorites">
+<map name="favorites">
+  <area shape="rect" coords="10,10,160,200" href="http://cafe.naver.com/doithtml5" target="_blank" alt="do it html5 네이버 카페로 가기">
+  <area shape="rect" coords="220,10,380,200" href="http://www.facebook.com/do.it.html5" target="_blank" alt="do it html5 페이스북 페이지로 가기">
+</map>
+</body>
+</html>
+```
