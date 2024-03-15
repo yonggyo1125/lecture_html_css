@@ -240,8 +240,205 @@
 
 ## 목록을 만드는 태그 
 
+### \<ul\> 태그, \<li\> 태그 - 순서 없는 목록 만들기
 
+
+```html 
+<ul>
+ <li>내용</li>
+ <li>내용</li>
+ ...
+</ul>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>제주 관광 안내</title>
+</head>
+<body>
+	<h1>관광 안내 전화 </h1>
+	<p>한국관광공사에서는 전국의 관광안내소와 공동으로 여러분의 여행편의를 위해 관광안내전화 1330 서비스를 연중무휴 실시하고 있습니다.</p>
+	<p>1330에는 해당 지역의 지도와 관광 가이드북, 관광안내소를 대신할 수 있을 정도의 다양한 정보가 있습니다. 원하는 관광지는 물론이며 숙박, 교통, 음식점 등의 자세한 정보를 한국어를 비롯한 영어, 중국어, 일어의 3개 국어로도 이용 가능합니다.</p>
+	<ul>
+		<li>일반 전화 : (국번없이) 1330</li>
+		<li>휴대 전화 : 064-1330</li>
+	</ul>
+</body>
+</html>
+```
+
+### \<ol\> 태그, \<li\> 태그 - 순서 목록 만들기 
+
+```html
+<ol>
+ <li>내용</li>
+ <li>내용</li>
+ ...
+</ol>
+```
+
+#### \<ol\> 태그 속성으로 순서 목록의 숫자와 순서 바꾸기
+
+- type 속성 : 숫자의 종류를 다양하게 조절할 수있습니다.
+
+|속성 값|설명|
+|---|----|
+|1|숫자(기본값)|
+|a|영문 소문자|
+|A|영문 대문자|
+|i|로마숫자 소문자|
+|I|로마숫자 대문자|
+
+- start 속성 : 순서 목록은 기본적으로 1부터 시작, start 속성을 이용하면 중간 번호부터 시작할 수 있습니다.
+- reversed 속성 : 항목을 역순으로 표시합니다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>1박 2일 가족 여행 코스</title>
+</head>
+<body>
+	<h1>1박 2일 가족 여행 코스</h1>
+	<ul>
+		<li>1일차
+			<ol type="a">
+				<li>해녀박물관</li>
+				<li>낚시체험</li>
+			</ol>
+		</li>
+		<li>2일차
+			<ol type="a" start ="3">
+				<li>용눈이오름</li>
+				<li>만장굴</li>
+				<li>카약체험</li>
+			</ol>
+		</li>
+	</ul>
+
+</body>
+</html>
+```
+
+### \<dl\>, \<dt\>, \<dd\> 태그 - 설명 목록 만들기
+- \<dl\> 태그는 목록을 만듭니다.
+- \<dt\> 태그는 제목을 만듭니다.
+- \<dd\> 태그는 설명을 표시합니다. 
+- 하나의 \<dt\> 태그에 여러 개의 \<dd\> 태그 값을 가질 수도 있고 여러 개의 \<dt\> 태그를 가질 수 도 있습니다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>제주 올레</title>
+	<style>
+		dl {
+			line-height:25px;   /* 줄 간격 */
+		}
+	</style>
+</head>
+<body>
+	<h1>제주 올레 </h1>
+	<dl>
+		<dt>올레 1코스</dt>
+		<dd>코스 : 시흥 초등학교 옆 - 광치기 해변</dd>
+		<dd>거리 : 14.6km(4~5시간)</dd>
+		<dd>난이도 : 중</dd>
+		<dt>올레 2코스</dt>
+		<dd>코스 : 광치기 해변 - 온평 포구</dd>
+		<dd>거리 : 14.5km(4~5시간)</dd>
+		<dd>난이도 : 중</dd>
+	</dl>
+</body>
+</html>
+```
+
+```html
+<!doctype html>
+<html lang="ko">
+<head>
+	<title>온라인 프로필</title>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div id="container">
+        <!-- 사이드바 -->
+        <!-- <aside>
+            <div id="namecard">
+
+            </div>
+            <div id="detail">
+                               
+            </div>
+            <div id="sns">
+                <h2>SNS</h2>
+
+            </div>        
+        </aside> -->
+        <div id="main">
+            <!-- 자기 소개 -->
+            <section>
+                <h2 class="subtitle">Who am I?</h2>
+                <p><mark>프런트엔드 웹 기술(Front-end Web Tech.)</mark>에 관심이 많습니다. <br>현재 제주의 한 시골 마을에서 코딩 중입니다.</p>
+            </section>
+
+            <!-- 경력 -->
+            <section>
+                <h2 class="subtitle">Experience</h2>
+                <ul>
+                    <li>프론트엔드 개발
+                        <ul>
+                            <li>업무 내용 업무 내용 업무 내용 </li>
+                            <li>업무 내용 </li>
+                            <li>업무 내용 업무 내용</li> 
+                        </ul>
+                    </li>
+                    <li>웹 디자인
+                        <ul>
+                            <li>업무 내용 </li>
+                            <li>업무 내용 업무 내용</li>
+                        </ul>                        
+                    </li>
+                </ul>             
+            </section>
+
+            <!-- 숙련도 -->
+            <section>
+                <h2 class="subtitle">Skills</h2>
+
+            </section>
+
+            <!-- 학력 -->
+            <section>
+                <h2 class="subtitle">Education</h2>
+
+            </section>
+        </div>        
+    </div>
+</body>
+</html>
+```
 
 ---
 
 ## 표를 만드는 태그 
+
+### \<table\>, \<tr\>, \<td\>, \<th\> 태그 - 기본적인 표 만들기
+
+```html
+<table>
+    <tr>
+        <td>내용</td>
+        <td>내용</td>
+        ...
+    </tr>
+    ...
+</table>
+```
