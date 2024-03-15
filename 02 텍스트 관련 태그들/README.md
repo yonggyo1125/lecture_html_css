@@ -159,12 +159,88 @@
 - \<q\> 태그는 인라인 레벨 태그이기 때문에 줄바꿈 없이 다른 내용과 함께 한 줄로 표시되고 인용 내용에 따옴표를 붙여 표시한다는 점 
 
 ```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>웹 접근성(Web Accessibility)</title>
+</head>
+<body>
+	<h1>웹 접근성</h1>
+	<p>웹의 창시자인 팀 버너스 리 (Tim Berners-Lee)의 <q cite="http://www.w3.org/standards/webdesign/accessibility">웹의 힘은 보편성에 있다. 장애에 구애없이 모든 사람이 접근할 수 있는 것이 필수적인 요소이다.</q>라는 말로 웹 접근성을 설명한다. </p>
+</body>
+</html>
+```
+
+### \<mark\> 태그 - 형광펜 표과 내기
+
+```html
+<mark>텍스트</mark>
+```
+> CSS의 background-color 속성을 사용해 \<mark\>태그의 배경색을 바꿀 수 있습니다.
+
+### \<span\> 태그 - 줄바꿈 없이 영역 묶기
+
+```html
+<span>내용</span>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>제주 이색 여행지</title>
+</head>
+<body>
+    <h2>야외 텐트를 닮은 건축물 <mark>"테쉬폰"</mark></h2>
+    <p>아일랜드 출신 임피제 신부가 1954년 제주에 오면서 목장 숙소로 짓기 시작한 후 사료공장, 성당으로 활용됐습니다. 제주에서 점차 다른 지방으로 보급됐지만 현재 제주에만 건축물이 남아있으며, <span style="color:blue;">국내 근현대 건축사의 한 페이지를 보여주는 가치를 지닌다</span>고 전문가들은 평가합니다.</p>
+</body>
+</html>
+```
+
+### \<ruby\> 태그 - 동아시아 글자 표시하기
+- \<ruby\> 태그는 주로 동아시아 국가들의 글자에 주석을 함께 표기하기 위한 용도로 사용
+- 주석으로 표시할 내용을 \<ruby\> 태그 안에 \<rt\> 태그로 표시합니다.
+
+
+```html
+<ruby> 내용 <rt> 주석 </rt></ruby>
+```
+
+```html
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>Ruby</title>
+	</head>
+	<body>
+		<p>루비(Ruby)는 1995년, 일본의 프로그래머인 마츠모토 유키히로 (<ruby>松本行弘<rt>まつもとゆきひろ</rt></ruby>)가 만든 프로그래밍 언어입니다.</p>
+	</body>	
+</html>
 
 ```
+
+### 기타 텍스트 관련 태그들
+
+|태그|설명| 예시                               |
+|---|----|----------------------------------|
+|\<abbr\>|약자 표시 title 속성을 함께 사용할 수 있음| \<p\>\<b\>\<abbr title="Internet of Things"\>IoT\\</abbr\>\</b\>란 각종 사물에 센서와 통신 기능을 내장해 인터넷에 연결하는 기술을 의미한다.\</p\> |
+|\<cite\>|웹 문서나 포스트에서 참고 내용을 표시| \<p\>내가 경험한 가장 흥미진진한 일은 누군가를 만나는 일이다 - 영화, \<cite\>'비포선셋'\</cite\> 중 |
+|\<code\>|컴퓨터 인식을 위한 소스 코드| \<pre\>\<code\> function savethelocal() {....}\</code\>\<\pre\> |
+|\<kbd\>|키보드 입력이나 음성 명령 같은 사용자 입력 내용| \<p\> 웹 화면을 다시 불러오려면 \<kbd\>F5\<kbd\>키를 누릅니다.\</p\> |
+|\<small\>|부가 정보처럼 작게 표시해도 되는 텍스트| \<p\>가격 : 13,000원 \<small\>(부가세 별도)\</small\>\</p\> |
+|\<sub\>|아래 첨자| \<p\>물의 화학식은 \<b\>H\<sub\>2\</sub\>O\</b\>다\</p\> |
+|\<sup\>|위 첨자| \<p\>E = mc\<sup\>2\</sup\>\</p\>|
+|\<s\>|취소선|\<p\>\<s\>34,000원\</s\>\<strong\>19,000원\</strong\>\</p\>|
+|\<u\>|밑줄|\<p\>링크 표시 용도가 아니라 단순히 밑줄을 긋는다면 \<u\> u 태그\</u\>\</p\>|
 
 ---
 
 ## 목록을 만드는 태그 
+
+
 
 ---
 
