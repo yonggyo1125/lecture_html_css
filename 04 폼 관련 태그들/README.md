@@ -511,9 +511,74 @@
 
 # \<input\> 태그의 다양한 속성
 
+## autofocus 속성 - 입력 커서 표시하기 
+- autofocus 속성을 사용하면 페이지를 불러오자마자 폼의 요소 중에서 원하는 요소에 마우스 커서를 표시할 수 있습니디. 
+- 이전에는 이 기능을 구현하기 위해 자바스크립트를 이용해야 했는데 HTML5에서는 autofocus라는 속성으로 쉽게 해결할 수 있습니다.
+
+```html
+<label class="reg" for="uname">이름</label>
+<input type="text" id="uname" autofocus required>
+```
+
+## placeholder 속성 - 힌트 표시하기 
+- 사용자가 텍스트를 입력할 때 도움이 되도록 입력란에는 적당한 힌트 내용을 표시하고 있다가 그 필드를 클릭하면 내용이 사라지도록 만들 수 있습니다. 
+- 텍스트 필드 앞에 제목을 사용하지 않고도 해당 필드에 어떤 내용을 입력해야 할지 알려 줄 수 있어 편리합니다.
+
+```html
+<label class="reg" for="uid">학번</label>
+<input type="text" id="uid" placeholder="하이픈없이 입력" maxlength="8" required>
+```
+
+## readonly 속성 - 읽기 전용 필드 만들기 
+- readonly 속성은 true나 false 값 중 하나만 사용하기 때문에 속성과 함께 true나 false값을 지정해도 되고 간단히 readonly라고만 쓰거나 readonly="readonly"라고 써도 readonly="true"로 인식합니다. 
+
+```html
+<label class="reg" for="subj">영어회화(초급)</label>
+<input type="text" id="subj" value="오전 9:00~11:00" readonly>
+```
+
+## required 속성 - 필수 필드 지정하기 
+
+```html
+<label class="reg" for="uname">이름</label>
+<input type="text" id="uname" autofocus required>
+```
+
+## min, max, step 속성
+
+- min : 최솟값 
+- max : 최댓값
+- step : 증감단위
+
+```html
+<label class="reg" for="group">단체주문</label>
+<input type="number" id="group" value="10" min="10" max="100" step="10">
+```
+
+## size, minlength, maxlength 속성 - 길이, 최소 길이, 최대 길이 속성 
+
+```html
+<label>아이디: <input type="text" id="user_id" size="10" minlength="4" maxlength="15"></label><small style="color:red;"> 4~15자리 이내의 영문과 숫자</small>
+```
+
+- 이외에도 \<input\> 태그에서 사용할 수 있는 속성들은 다음과 같습니다.
+
+|속성|설명|
+|---|----|
+|formaction|실행할 프로그램을 연결합니다. type="submit"이나 type="image"일 때 사용할 수 있습니다.|
+|formenctype|서버로 폼을 전송했을 때 폼 데이터를 어떤 방식으로 해석할 것인지 지정합니다. type="submit"이나 type="image"일 때 사용할 수 있습니다.|
+|formmethod|서버로 폼을 전송하는 방식(get, post 등)을 지정합니다. 이미 \<form\> 태그 안에서 지정한 방식이 있어도 그 방식은 무시됩니다.|
+|formnovalidate|\<form\> 태그 안에 novaliate 라는 속성이 있어서 서버로 전송할 때 폼 데이터가 유효(validate)한지 여부를 표시할 수 있는데 \<input\> 태그 안에서도 formnovalidate 속성을 이용해 유효성 여부를 표시할 수 있습니다.|
+|formtarget|폼 데이터를 서버로 전송한 후 서버의 응답을 어디에 표시할 것인지 타깃을 지정합니다.|
+|height, width|type="image"일 때 이미지의 너비와 이를 지정합니다.|
+|list|\<datalist\>에 미리 정의해 놓은 옵션 값을 \<input\> 안에 나열해 보여 줍니다.|
+|multiple|type="email"이나 type="file"일 때 두 개 이상의 값을 입력합니다. \<input\> 태그 안에 속성 이름만 표시하면 됩니다.|
+
 ---
 
 # 여러 데이터 나열해 보여 주기
+
+
 
 ---
 
