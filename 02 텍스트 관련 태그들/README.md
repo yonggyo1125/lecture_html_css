@@ -737,3 +737,157 @@
 ### \<thead\>, \<tbody\>, \<tfoot\> 태그 - 표 구조 정의하기
 
 - table의 t와 제목 부분(head), 본문(body), 요약 부분(foot)이란 말이 합쳐진 \<thead\>와 \<tbody\>, \<tfood\> 태그 입니다.
+
+![image1](https://raw.githubusercontent.com/yonggyo1125/lecture_html_css/master/02%20%ED%85%8D%EC%8A%A4%ED%8A%B8%20%EA%B4%80%EB%A0%A8%20%ED%83%9C%EA%B7%B8%EB%93%A4/images/1.png)
+
+```html
+<thead>
+    <tr> ... </tr>
+</thead>
+<tbody>
+    <tr> ... </tr>
+</tbody>
+<tfoot>
+    <tr> ... </tr>
+</tfoot>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>표 만들기</title>
+	<style>
+		table, th, td {
+			border:1px solid #ccc;
+		}
+		th, td {
+			width:80px;  /* 셀의 너비 */
+			padding:10px; /* 셀 테두리와 내용 사이의 간격(패딩) */
+		}
+		thead, tfoot { 
+			background : #eeeeee;  /* thead와 tfoot의 배경 색 */
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<caption>제주특별자치도 학교현황(2015.4.1 기준)</caption>
+		<thead>
+			<tr>
+				<th>구분</th>
+				<th>학교수</th>
+				<th>학급수</th>
+				<th>학생수</th>
+				<th>교원수</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>유치원</th>
+				<td>117</td>
+				<td>252</td>
+				<td>5,547</td>
+				<td>474</td>
+			</tr>
+			<tr>
+				<th>초등학교</th>
+				<td>111</td>
+				<td>1,720</td>
+				<td>37,686</td>
+				<td>2,632</td>
+			</tr>
+			<tr>
+				<th>중학교</th>
+				<td>44</td>
+				<td>699</td>
+				<td>21,274</td>
+				<td>1,412</td>
+			</tr>
+			<tr>
+				<th>고등학교</th>
+				<td>29</td>
+				<td>676</td>
+				<td>22,019</td>
+				<td>1,433</td>
+			</tr>
+			<tr>
+				<th>특수학교</th>
+				<td>3</td>
+				<td>90</td>
+				<td>428</td>
+				<td>160</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th>합계</th>
+				<td>300</td>
+				<td>3,437</td>
+				<td>86,954</td>
+				<td>6,111</td>
+			</tr>
+		</tfoot>
+	</table>
+</body>
+</html>
+```
+
+### \<col\>, \<colgroup\> 태그 - 여러 열 묶어 스타일 지정하기 
+- 표에서 하나의 열에 스타일을 지정하거나 열(column)을 몇 개씩 묶어 스타일을 한꺼번에 지정할 수도 있습니다.
+- \<col\> 태그를 사용해 둘 이상의 열을 묶어 같은 스타일을 지정하려면 <code>span</code> 속성을 이용해 몇 개를 함께 묶어줄지 지정할 수 있습니다.
+
+```html
+기본형
+<col>
+```
+
+```html
+기본형
+<colgroup>
+    <col>
+    ...
+</colgroup>
+```
+
+```html 
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>표 만들기</title>
+	<style>
+		table, th, td {
+			border:1px solid #ccc;
+		}
+		td {
+			width:100px;  /* 셀 너비 */
+			height:30px;  /* 셀 높이 */
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<caption>colgroup 연습</caption>
+		<colgroup>
+			<col>
+			<col span="2" style="background-color:blue;">
+			<col style="background-color:yellow">
+		</colgroup>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+</body>
+</html>
+```
