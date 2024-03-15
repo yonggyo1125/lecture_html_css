@@ -196,6 +196,315 @@
 |reset|리셋 버튼을 넣습니다.|
 |button|버튼을 넣습니다.|
 
+## type="hidden" - 히든 필드 만들기
+- 화면상의 폼에는 보이지 않지만 사용자가 입력을 마치고 폼을 서버로 전송할 때 서버로 함께 전송되는 요소입니다.
+- 사용자에게 굳이 보여 줄 필요가 없지만 관리자가 알아야 하는 것을 히든 필드로 입력합니다.
+
+```html
+<input type="hidden" name="이름" value="서버로 넘길 값">
+```
+
+## type="text" - 텍스트 필드 만들기 
+
+- 한 줄짜리 일반 텍스트를 입력하는 필드입니다.
+- 텍스트 필드에서 사용할 수 있는 속성은 다음과 같습니다.
+
+|속성|설명|
+|---|----|
+|name|텍스트 필드를 구별할 수 있도록 이름을 붙입니다.|
+|size|텍스트 필드의 길이를 지정합니다. 즉 화면에 몇 글자가 보이도록 할 것인지를 지정합니다. 예를 들어 최대 입력 가능 글자 수가 10개인데 size를 5로 지정하면 텍스트 필드 크기가 5개 글자 크기에 맞추어져 나머지 5개 글자는 화면에 보이지 않습니다.|
+|value|텍스트 필드 요소가 화면에 표시될 때 텍스트 필드 부분에 표시될 내용입니다. 이 속성을 사용하지 않으면 빈 텍스트 필드가 표시됩니다.|
+|maxlength|텍스트 필드에 입력할 수 있는 최대 문자 개수를 지정합니다.|
+
+## type="password" - 비밀번호 입력란 만들기 
+
+- 사용자가 입력하는 내용이 화면에 표시되지 않고 '*'나 '•'로 표시됩니다. 
+- 속성도 value 속성이 없다는 점만 제외하면 텍스트 필드와 같습니다. 
+
+```html
+<input type="password" [속성="속성 값"]>
+```
+
+```html
+    <form>
+        <fieldset>
+            <label>아이디: <input type="text" id="user_id" size="10"></label>
+          <label>비밀번호: <input type="password" id="user_pw" size="10"></label>
+          <input type="submit" value="로그인">
+        </fieldset>
+    </form>
+```
+
+## type="search", type="url", type="email", type="tel" - 분화된 텍스트 필드 
+
+- type="search" : 검색 상자 만들기 
+- type="url" : URL 입력란 만들기 
+- type="email" : 메일 주소 입력란 만들기 
+- type="tel" : 전화번호 입력란 만들기 
+
+
+```html
+        <h1>회원 가입</h1>
+		<form>
+			<fieldset>
+				<legend>로그인 정보</legend>
+				<ul>
+					<li>
+    				<label for="user-id">아이디 </label>
+						 <input type="text" id="user-id">
+					</li>
+					<li>
+						<label for="pwd1">비밀번호 </label>
+						<input type="password" id="pwd1">
+					</li>
+					<li>
+						<label for="pwd2">비밀번호 확인 </label>
+						<input type="password" id="pwd2">				
+					</li>
+				</ul>
+			</fieldset>
+			<fieldset>
+				<legend>개인 정보</legend>
+				<ul>
+					<li>
+						<label for="user-name">이름 </label>
+						<input type="text" id="user-name">
+					</li>
+					<li>
+						<label for="mail">메일 주소</label>
+						<input type="email" id="mail">
+					</li>
+					<li>
+						<label for="phone">연락처</label>
+						<input type="tel" id="phone">
+					</li>
+					<li>
+						<label for="homep">블로그/홈페이지</label>
+						<input type="url" id="homep">
+					</li>
+				</ul>
+			</fieldset>
+			<input type="submit" value="가입하기">
+		</form>
+```
+
+## type="number" - 숫자 입력하기 
+- 사용자가 입력한 내용을 숫자로 인식합니다. 
+- 브라우저에 따라 스핀 박스가 표시되기도 합니다. 
+- 스핀 박스란 입력창 오른쪽에 작은 화살표를 표시해 화살표를 클릭하면 숫자를 증감시킬 수 있게 한 것 
+
+```html
+<input type="number" [속성="속상 값"]>
+```
+
+```html
+<b>주문 개수 : </b> <input type="number" min="1" max="5" value="1"> 개 
+```
+
+## type="range" - 슬라이드 막대로 숫자 지정하기
+
+```html
+<input type="range" [속성="속성 값"]>
+```
+
+- type="number" 필드와 type="range" 필드에서 사용할 수 있는 속성
+
+|속성|설명|
+|---|----|
+|min|필드에 입력할 수 있는 최솟값을 지정합니다. type="range"일 때 기본 최소값은 0입니다.|
+|max|필드에 입력할 수 있는 최댓값을 지정합니다. type="ranage"일 때 기본 최대값은 100입니다.|
+|step|짝수나 홀수 등 특정 숫자로 제한하려고 할 때 숫자 간격을 지정할 수 있습니다. 기본 값은 1이며 생략할 수 있습니다.|
+|value|필드에 표시할 초기값입니다.|
+
+```html
+    <form>
+	  <fieldset>
+	    <legend> 등록 정보</legend>
+    	  <ul>
+	        <li>
+            	  <label class="reg" for="member">참여인원<small>(최대10명)</small></label>
+                <input type="number" id="member" value="1" min="0" max="10" step="1">
+              </li>
+              <li>
+            	  <label class="reg" for="stuffs">지원물품<small>(1인당 5개)</small></label>
+                <input type="number" id="stuffs" value="1" min="0" max="50" step="5">
+              </li>
+        	  <li>
+            	  <label class="reg" for="satis">희망 단계<small>(하,중,상)</small></label>
+                <input type="range" id="satis" value="1" min="1" max="3">
+              </li>           
+            </ul>
+       </fieldset>
+    </form>
+```
+
+## type="radio", type="checkbox" - 라디오 버튼과 체크박스 넣기
+
+- 여러 항목 중 원하는 항목을 선택할 때 사용하는 폼 요소 
+- 라디오버튼 : 한 개만 선택하도록 할 경우 
+- 체크박스 : 두개 이상 여러 가지를 선택해도 될 경우
+
+```html
+<input type="radio" [속성="속성 값"]>
+
+<input type="checkbox" [속성="속성 값"]>
+```
+
+|속성|설명|
+|---|-----|
+|name|라디오 버튼이나 체크박스가 여러 개 있을 경우, 서버의 폼 프로그램에서 라디오 버튼이나 체크박스를 구분하기 위해 이름을 지정합니다. 라디오 버튼은 여러 개 중에서 하나만 선택하는 것이기 때문에 관련 있는 그룹끼리는 name 속성 값을 똑같이 만듭니다.|
+|value|선택한 라디오 버튼이나 체크박스를 서버로 알려 줄 때 넘길 값을 지정합니다. 이 값은 영문이거나 숫자여야 하며 필수 속성입니다.|
+|checked|라디오 버튼의 항목들은 처음에 아무것도 선택되지 않은 상태로 화면에 표시되는데 기본으로 선택해 놓은 항목이 있다면 checked 속성을 사용합니다.|
+
+```html
+    <form>
+		<fieldset>
+			<legend>신청 과목</legend>
+			<p>이 달에 신청할 과목을 선택하세요 (1과목만 가능)</p>
+			<label><input type="radio" name="subject" value="speaking">회화</label>
+			<label><input type="radio" name="subject" value="grammar">문법</label>
+			<label><input type="radio" name="subject" value="writing">작문</label>       
+		</fieldset>
+		<fieldset>
+			<legend>메일링</legend>
+			<p>메일로 받고 싶은 뉴스 주제를 선택해 주세요 (복수 선택 가능)</p>
+			<label><input type="checkbox" name="mailing1" value="news">해외 단신</label>
+			<label><input type="checkbox" name="mailing2" value="dialog">5분 회화</label>
+			<label><input type="checkbox" name="mailing3" value="pops">모닝팝스</label>
+		</fieldset>
+  </form>
+```
+
+## type="color" - 색상 선택 상자 표시하기 
+
+- 색상표에서 사용자가 색상을 선택할 수 있게 해줍니다. 
+
+```html
+<input type="color" [value="기본 색" [속성="속성 값"]>
+```
+
+```html
+    <form>
+		<fieldset>
+			<legend>과 티셔츠 설문</legend>
+			<p>올해 과 티(T)를 만들려고 합니다. 원하는 색상을 추천해 주세요.</p>
+			<label>선호색상  <input type="color" value="#00ff00"> </label>
+		</fieldset>
+
+    </form>
+```
+
+## type="date", type="month", type="week" - 날짜 표시하기 
+- 달력을 포함시키고 싶을 때 
+
+```html
+<input type="date | month | week" [value="기본 값" 속성="속성 값"]>
+```
+> '|'는 '또는(or)'의 의미로 날짜와 관련해 사용할 수 있는 유형
+
+
+|유형| 설명                      |
+|---|-------------------------|
+|date|날짜를 선택합니다.               |
+|month|월(month)과 연도(year)를 선택합니다.|
+|week|주(week)와 연도(year)를 선택합니다.|
+
+
+```html
+    <form>
+		<h3>조회기간 선택</h3>
+		<label><input type="date" id="start"></label>
+		<label><input type="date" id="end"></label>
+	</form>
+```
+
+## type="time", type="datetime", type="datetime-local" - 시간 지정하기
+
+- 시간을 지정할 때는 type="time"을 사용
+- 날짜와 시간을 함께 지정하려면 type="datetime"이나 type="datetime-local"을 사용
+
+```html
+<input type="time | datetime | datetime-local" [value="기본 값" 속성="속성 값"]>
+```
+
+|속성| 설명                                                                                                                                                                                |
+|---|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|min| 날짜나 시간의 최솟값을 지정합니다.                                                                                                                                                               |
+|max| 날짜나 시간의 최댓값을 지정합니다.                                                                                                                                                               |
+|step| 스핀 박스의 화살표를 누를 때마다 날짜나 시간을 얼마나 조절할지를 지정합니다.                                                                                                                                       |
+|value| 회면에 표시할 초기값을 지정합니다. type="time"일 경우 시간은 00:00부터 23:59까지 입력하고 type="datetime"이나 type="datetime-local" 유형일 경우, 날짜 다음에 키워드 T를 쓰고 24시간제로 시간을 지정합니다. 예를들어 오후 6시를 나타내려면 T18:00라고 하면 됩니다.|
+
+```html
+    <form>		
+		<h3>대관시간을 선택하세요(오늘)</h3>
+		<label>시작 시간<input type="time" value="09:00" id="start1"></label>,
+		<label>종료 시간<input type="time" value="18:00" id="end1"></label>
+
+		<h3>대관시간을 선택하세요(다른날짜)</h3>
+		<label>시작 시간<input type="datetime-local" value="2016-03-02T09:00" id="start2"></label>,
+		<label>종료 시간<input type="datetime-local" value="2016-03-02T18:00" id="end2"></label>
+	</form>
+```
+
+## type="submit", type="reset" - 서버 전송, 리셋 버튼 넣기
+
+- 리셋(reset) 버튼 : \<input\> 요소에 입력된 모든 정보를 재설정해 사용자가 입력한 내용을 모두 지울 수 있습니다. value 속성을 사용해 버튼에 표시할 내용을 지정
+- 제출(submit) 버튼 : 사용자가 폼에 입력한 정보를 서버로 전송합니다.
+
+```html
+<input type="submit | reset" [value="버튼 내용"] [속성="속성 값"]>
+```
+
+```html
+    <h3>메일링 리스트 등록</h3>
+	<form action="register.php" method="post">
+		<label> 메일 주소 <input type="text"></label>
+		<input type="submit" value="제출">
+		<input type="reset" value="다시입력">
+	</form>
+```
+
+## type="image" - 이미지 버튼 넣기 
+- submit 버튼 대신 전송 이미지를 넣을 수 있습니다. 
+- submit 버튼을 클릭할 때 처럼 사용자가 입력한 정보가 폼 처리 프로그램으로 전달됩니다.
+
+```html
+<input type="image" src="경로" alt="대체 텍스트" [속성="속성 값"]>
+```
+
+```html
+    <form>
+		<table>
+			<tr>
+				<td><label>아이디 <input type="text" size="15"></label></td>
+				<td><label>비밀번호 <input type="password" size="15"></label></td>
+				<td><input type="image" id="butt" src="images/login.jpg"  alt="login"></td>
+			</tr>
+		</table>	
+	</form>
+```
+
+## type="button" - 버튼 넣기 
+
+- 폼 안에 버튼 형태를 만듭니다. 
+- 이 버튼은 submit이나 reset같은 자체 기능이 없고 오직 버튼만 넣습니다. 
+- value 속성을 사용해 버튼에 표시할 내용을 지정합니다.
+
+```html
+<input type="button" [value="버튼 내용"] [속성="속성 값"]>
+```
+
+## type="file" - 파일 첨부하기 
+
+- type="file" 필드를 넣으면 웹브라우저 화면에 [파일 선택]이나 [찾아보기] 등이 표시됩니다.
+- 이 버튼을 클릭한 후 파일을 선택하면 파일이 첨부됩니다.
+
+```html
+<input type="file" [속성="속성 값"]>
+
+
+<label>첨부파일 <input type="file"></label>
+```
 
 
 ---
