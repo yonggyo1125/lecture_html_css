@@ -442,3 +442,298 @@
     ...
 </table>
 ```
+
+- 1. \<table\> 태그로 표 자리를 먼저 만듭니다.
+
+```html
+\<table\>
+    
+\</table\>
+```
+
+- 2. \<tr\> 태그로 2개의 행을 만듭니다.
+
+```html
+<table>
+ <tr>
+  
+ </tr>
+ <tr>
+  
+ </tr>
+</table>
+```
+
+- 3. \<td\> 태그로 각 행마다 셀을 3개식 만듭니다.
+
+```html
+<table>
+    <tr>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+    </tr>
+    <tr>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+   </tr>
+</table>
+```
+
+- 4. 각 셀에 들어갈 내용은 \<td\>와 \</td\> 사이에 입력합니다.
+
+
+### \<th\> 태그 - 표에 제목 셀 만들기
+
+- \<td\> 태그와 마찬가지로 셀을 만드는 태그로 해당 셀에 들어가는 내용을 셀의 중앙에 배치하고 굵게 표시합니다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>표 만들기</title>
+	<style>
+		table, th, td {
+			border:1px solid #ccc;
+		}		
+		td {
+			padding:5px;  /* 셀 테두리와 내용 사이의 간격(패딩) */
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>제목 셀</th>
+			<td>1행 2열</td>
+			<td>1행 3열</td>
+		</tr>
+		<tr>
+			<th>제목 셀</th>
+			<td>2행 2열</td>
+			<td>2행 2열</td>
+		</tr>
+	</table>
+</body>
+</html>
+```
+
+### colspan, rowspan 속성 - 행 또는 열 합치기 
+
+- 여러 열을 하나로 합치려면 \<td\> 태그나 \<th\> 태그 안에서 colspan 속성을 사용해 몇 개의 셀을 가로로 합칠지 지정합니다.
+
+```html
+<td colspan="합칠 셀의 개수">내용</td>
+<th colspan="합칠 셀의 개수">내용</th>
+```
+
+- \<td\>태그나 \<th\> 태그에서 rowspan 속성을 이용해 새로 합칠 셀의 개수를 지정합니다.
+
+```html
+<td rowspan="합칠 셀의 개수">내용</td>
+<th rowspan="합칠 셀의 개수">내용</th>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>표 만들기</title>
+	<style>
+		table, th, td {
+			border:1px solid #ccc;
+		}		
+		th {
+			padding:15px;   /* 셀 테두리와 내용 사이의 간격(패딩) */
+		}
+		tr > td:nth-child(odd) { 
+			width:120px;  /* 홀수번째 열의 너비 : 120px */
+		}
+		tr > td:nth-child(even) { 
+			width:300px;  /* 짝수번째 열의 너비 : 120px */
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>이름</th>
+			<td></td>
+			<th>연락처</th>
+			<td></td>
+		</tr>
+		<tr>
+			<th>주소</th>
+			<td colspan="3"></td>
+		</tr>		
+		<tr>
+			<th>자기소개</th>
+			<td colspan="3"></td>
+		</tr>
+	</table>
+</body>
+</html>
+```
+
+### \<caption\> 태그, \<figcaption\> 태그 - 표에 제목 붙이기
+
+#### \<caption\> 태그 사용하기 
+- \<table\> 태그 바로 다음에 사용 
+- \<caption\> 태그를 사용한 표 제목은 표의 위쪽 중앙에 표시된다. 
+
+```html
+<caption>표 제목</caption>
+```
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>표 만들기</title>
+	<style>
+		table, th, td {
+			border:1px solid #ccc;
+		}		
+		td, th {
+			padding:10px;   /* 셀 테두리와 내용 사이의 간격(패딩) */
+		}
+	</style>
+</head>
+<body>	
+	<table>
+		<caption>
+			<strong>Modern Browser</strong>
+			<p>국내에서 자주 사용하는 모던 브라우저</p>
+		</caption>
+		<tr>
+			<th>브라우저</th>
+			<th>제조업체</th>
+			<th>다운로드</th>
+		</tr>
+		<tr>
+			<th>크롬(Chrome)</th>
+			<td>Google</td>
+			<td>https://www.google.com/chrome/ </td>
+		</tr>
+		<tr>
+			<th>파이어폭스(Firfox)</th>
+			<td>Mozilla</td>
+			<td>https://www.mozilla.org/ko/firefox/</td>
+		</tr>
+		<tr>
+			<th> 엣지(Edge) </th>
+			<td> Microsoft </td>
+			<td>https://www.microsoft.com/ko-kr/windows/microsoft-edge</td>
+		</tr>
+	</table>
+
+</body>
+</html>
+```
+
+#### \<figcaption\> 태그 사용하기
+- \<figcaption\> 태그는 figure와 caption의 합성어로 설명 글을 붙이고 싶은 대상을 \<figure\> 태그로 감싼 후 \<figcaption\> 태그를 이용해 제목이나 설명 글을 입력합니다.
+- \<caption\> 태그와 달리 중앙에 정렬되지 않습니다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>표 만들기</title>
+	<style>
+		table, th, td {
+			border:1px solid #ccc;
+		}		
+		td, th {
+			padding:10px;   /* 셀 테두리와 내용 사이의 간격(패딩) */
+		}
+	</style>
+</head>
+<body>	
+	<figure>
+		<figcaption>
+			<p>국내에서 자주 사용하는 <b>모던 브라우저</b></p>
+		</figcaption>
+		<table>
+			<tr>
+				<th>브라우저</th>
+				<th>제조업체</th>
+				<th>다운로드</th>
+			</tr>
+			<tr>
+				<th>크롬(Chrome)</th>
+				<td>Google</td>
+				<td>https://www.google.com/chrome/ </td>
+			</tr>
+			<tr>
+				<th>파이어폭스(Firfox)</th>
+				<td>Mozilla</td>
+				<td>https://www.mozilla.org/ko/firefox/</td>
+			</tr>
+			<tr>
+				<th> 엣지(Edge) </th>
+				<td> Microsoft </td>
+				<td>https://www.microsoft.com/ko-kr/windows/microsoft-edge</td>
+			</tr>
+		</table>
+	</figure>
+</body>
+</html>
+```
+
+#### aria-describedby 속성 - 표에 대한 설명 제공하기
+- 화면 낭독기에서 표를 읽어줄 때 도움이 되도록 표 설명을 별도의 문장으로 작성한 후 <table>태그 안에 aria-describedby 속성을 추가해 연결하면 표를 이해하는 데 도움이 됩니다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>표 만들기</title>
+	<style>
+		table, th, td {
+			border:1px solid #ccc;
+		}
+		td, th {
+			padding:10px;  /* 셀 테두리와 내용 사이의 간격(패딩) */
+		}
+	</style>
+</head>
+<body>	
+	<p id="summary">다음 표는 HTMl5를 지원하는 모던(Modern Browser)를 정리한 것입니다. 최신 버전일수록 HTML5를 좀더 많이 지원하기 때문에 최신 버전을 다운로드하는 것이 좋습니다. </p>
+	<table aria-describedby="summary">
+		<caption>Modern Browser</caption>
+		<tr>
+			<th>브라우저</th>
+			<th>제조업체</th>
+			<th>다운로드</th>
+		</tr>
+		<tr>
+			<th>크롬(Chrome)</th>
+			<td>Google</td>
+			<td>https://www.google.com/chrome/ </td>
+		</tr>
+		<tr>
+			<th>파이어폭스(Firfox)</th>
+			<td>Mozilla</td>
+			<td>https://www.mozilla.org/ko/firefox/</td>
+		</tr>
+		<tr>
+			<th> 엣지(Edge) </th>
+			<td> Microsoft </td>
+			<td>https://www.microsoft.com/ko-kr/windows/microsoft-edge</td>
+		</tr>
+	</table>
+</body>
+</html>
+```
+
+
+### \<thead\>, \<tbody\>, \<tfoot\> 태그 - 표 구조 정의하기
+
+- table의 t와 제목 부분(head), 본문(body), 요약 부분(foot)이란 말이 합쳐진 \<thead\>와 \<tbody\>, \<tfood\> 태그 입니다.
