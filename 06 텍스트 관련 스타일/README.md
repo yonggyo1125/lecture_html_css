@@ -631,5 +631,130 @@ ul { list-style-type: none; }
 
 |속성 값|설명|예시|
 |----|-----|----|
+|decimal|1로 시작하는 십진수|1,2,3,...10,11|
+|decimal-leading-zero|앞에 0이 붙는 십진수|01,02,03,...10,11|
+|lower-roman|소문자 로마 숫자|i,ii,iii,iv|
+|upper-roman|대문자 로마 숫자|I, II, III, IV|
+|lower-alpha 또는 lower-latin|소문자 알파벳|a,b,c,d,e|
+|upper-alpha 또는 upper-latin|대문자 알파벳|A,B,C,D,E|
+|armenian|아르메니아 숫자||
+|georginan|조지 왕조시대의 숫자|an, ban, gan|
 
+```html
+<style>
+    .book1 {
+      list-style-type:lower-alpha;  /* 소문자 알파벳 */
+    }
+    .book2 {
+      list-style-type: upper-roman;  /* 대문자 로마 숫자 */
+    }
+</style>
+
+<h1>도서 시리즈</h1>
+<ol class="book1">
+    <li>Do it! 시리즈</li>
+    <li>된다 시리즈</li>
+    <li>DCM 프로 사진가</li>
+    <li>데이터과학 시리즈</li>
+</ol>
+
+<ol class="book2">
+    <li>Do it! 시리즈</li>
+    <li>된다 시리즈</li>
+    <li>DCM 프로 사진가</li>
+    <li>데이터과학 시리즈</li>
+</ol>
+```
+
+## list-style-image 속성 - 블릿 대신 이미지 넣기
+
+```css
+list-style-image: <이미지> | none
+<이미지> = url(이미지 파일 경로)
+```
+
+|속성 값|설명|
+|---|----|
+|none|이미지를 사용하지 않고 list-style-type 속성에서 지정한 형태로 표시합니다.|
+|\<이미지\>|url("images.jpg") 처럼 url() 키워드 안에 이미지 파일 경로를 지정합니다.|
+
+```html 
+<style>
+    ul {
+      list-style-image:url('images/dot.png');  /* 불릿으로 사용할 이미지 */
+    }
+</style>
+
+<ul>
+    <li>회사소개</li>
+    <li>도서</li>
+    <li>자료실</li>
+    <li>질문답변</li>
+    <li>동영상강의</li>
+</ul>
+```
+
+## list-style-position 속성 - 목록에 들여 쓰는 효과 내기
+
+- 실제 내용이 시작되는 위치에 블릿이나 번호를 표시하기 때문에 결과 화면에는 블릿이나 번호가 좀 더 안쪽으로 들여 써진 듯한 효과가 나타납니다. 
+
+```css
+list-style-position: inside | outside;
+```
+
+|속성 값|설명|
+|---|-----|
+|inside|블릿이나 숫자를 안쪽으로 들여 씁니다.|
+|outside|기본 값으로 블릿이나 숫자를 밖으로 내어 씁니다.|
+
+```html
+<style>
+    .inside {
+      list-style-position:inside;
+    }
+</style>
+
+<h3> list-style-position을 지정하지 않음</h3>
+<ul>
+    <li>회사소개</li>
+    <li>도서</li>
+    <li>자료실</li>
+    <li>질문답변</li>
+    <li>동영상강의</li>
+</ul>
+<h3> list-style-position : inside</h3>
+<ul class=inside>
+    <li>회사소개</li>
+    <li>도서</li>
+    <li>자료실</li>
+    <li>질문답변</li>
+    <li>동영상강의</li>
+</ul>
+```
+
+## list-style 속성 - 목록 속성 한꺼번에 표시하기
+- list-style-type과 list-style-position, list-style-image 속성을 한꺼번에 표시할 수 있습니다. 
+
+
+```css
+ol { list-style-type: none; }
+```
+↓
+
+```css
+ol { list-style: none; }
+```
+
+```css
+ol {
+    list-style-type: lower-alpha;
+    list-style-position: inside;
+}
+```
+↓
+```css
+ol {
+    list-style: lower-alpha, inside;
+}
+```
 
