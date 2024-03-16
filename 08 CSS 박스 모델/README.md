@@ -15,6 +15,9 @@
 - 화면에 표시되는 콘텐츠만큼 영역을 차지하고 나머지 공간에는 다른 요소가 올 수 있습니다. 따라서 한 줄에 여러 개의 인라인 레벨 요소를 표시할 수 있습니다. 
 - \<img\> 태그나 \<string\> 태그 등이 인라인 레벨 요소를 만드는 태그 입니다.
 
+![image1](https://raw.githubusercontent.com/yonggyo1125/lecture_html_css/master/08%20CSS%20%EB%B0%95%EC%8A%A4%20%EB%AA%A8%EB%8D%B8/images/1.png)
+
+
 
 
 ---
