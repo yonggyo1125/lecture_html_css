@@ -574,3 +574,62 @@ text-overflow: clip | ellipsis
 
 --- 
 # 목록 스타일
+
+## list-style-type 속성 - 목록의 블릿과 번호 스타일 지정하기
+
+- 순서 없는 목록의 경우, 목록 앞에 다양한 블릿(bullet)을 넣을 수 있고 순서 목록에서는 번호 스타일을 지정할 수 있습니다.
+
+```css
+list-style-type: none | \<순서 없는 목록 블릿\> | \<순서 목록의 번호\>
+```
+
+### 순서 없는 목록에서 블릿 모양 바꾸기 
+
+|속성 값|설명|
+|---|----|
+|disc(●)|채운 원|
+|circle(○)|빈 원|
+|square(■)|채운 사각형|
+|none|블릿 없애기|
+
+### 순서 없는 목록에서 블릿 없애기
+
+```css
+ul { list-style-type: none; }
+```
+
+```html 
+<style>
+    .sqbullet {
+      list-style-type:square; /* 채운 사각형 */
+    }
+    .nobullet{
+      list-style-type:none;  /* 불릿 없애기 */
+    }
+</style>
+
+<!-- 채운 사각형으로 불릿 바꾸기 -->
+<ul class="sqbullet">
+    <li>회사소개</li>
+    <li>도서</li>
+    <li>자료실</li>
+    <li>질문답변</li>
+    <li>동영상강의</li>
+</ul>
+
+<!-- 불릿 없애기 -->
+<ul class="nobullet">
+    <li>회사소개</li>
+    <li>도서</li>
+    <li>자료실</li>
+    <li>질문답변</li>
+    <li>동영상강의</li>
+</ul>
+```
+
+### 순서 목록에서 숫자 바꾸기
+
+|속성 값|설명|예시|
+|----|-----|----|
+
+
