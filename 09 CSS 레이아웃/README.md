@@ -563,5 +563,356 @@ column-span: 1 | all
 ```
 
 ---
-
 # 표 스타일
+
+## caption-side 속성 - 표 제목 위치 정하기
+
+- 기본적으로 캡션은 표의 위쪽에 표시되지만 caption-size 속성을 이용하면 캡션의 위치를 표 아래쪽으로 옮길 수 있습니다.
+
+```css
+caption-side: top | bottom
+```
+
+|속성 값|설명|
+|---|----|
+|top|캡션을 표의 윗부분에 표시합니다. 기본값|
+|bottom|캡션을 표의 아랫부분에 표시합니다.|
+
+## border 속성 - 표 테두리 스타일 결정하기
+
+- 표를 삽입할 떄 기본적으로 \<table\> 태그의 border 속성을 이용해 \<table border="1"\> 처럼 사용하면 표에 테두리를 그릴 수 있습니다. 
+- 여기에 CSS의 border 속성을 이용해 테두리 색상이나 형태, 너비 등을 지정할 수 있습니다. 
+
+```html
+    <style>
+			body{
+				font-family:"맑은 고딕", "고딕", "굴림";
+			}
+			.table1 {
+				border:1px solid black;
+			}
+			.table1 td {
+				border:1px dotted black;
+				padding:10px;
+				text-align:center;
+			}
+    </style>
+
+    <table class="table1">
+        ...
+    </table>
+```
+
+## border-collapse 속성 - 테두리 통합, 분리하기 
+
+- \<table\>태그와 \<td\>태그에서 border 속성을 사용하면 두 줄로 표시되는데 이때 border-collapse 속성을 이용하면 표의 바깥 테두리와 셀의 각 테두리가 떨어져 있는 것을 그대로 둘 것인지, 두 테두리를 하나로 합칠 것인지 결정할 수 있습니다.
+
+```css
+border-collapse: collapse | separate
+```
+
+|속성 값|설명|
+|---|----|
+|collapse|테두리를 하나로 합쳐 표시합니다.|
+|separate|테두리를 따로 표시합니다. 기본값|
+
+```html
+<style>
+    .table1 {
+	    border:1px solid black;
+		border-collapse:collapse;
+	}
+	.table1 td {
+		border:1px dashed black;
+		padding:10px;
+		text-align:center;
+	}
+</style>
+
+<table class="table1">
+    ...
+</table>
+```
+
+## border-spacing 속성 - 인접한 셀 테두리 사이 거리 지정하기
+
+- border-spacing 속성은 border-collapse: separate를 사용해 셀들을 분리했을 경우, 인접한 셀 테두리 사이의 거리를 지정합니다.
+
+```css
+border-spacing: <크기>
+```
+
+|속성 값|설명|
+|---|----|
+|\<크기\>|px이나 em등 크기의 단위를 직접 지정합니다.|
+
+- 표에서 테두리를 하나로 합치지 않고 셀의 테두리 사이 간격을 좌우 20px, 상하 10px로 지정합니다(table1).
+- 만약 바깥 테두리를 따로 지정하지 않는다면 셀의 테두리만 표시됩니다(table2).
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>표 스타일</title>
+    <style>
+			body{
+				font-family:"맑은 고딕", "고딕", "굴림";
+			}
+			table {
+				margin-bottom:50px;
+			}
+			.table1 {
+				border:1px solid black;
+				border-collapse:separate;
+				border-spacing:20px 10px;
+			}
+			.table2 {
+				border-collapse:separate;
+				border-spacing:20px 10px;				
+			}
+			td {
+        border:1px solid black;
+        padding:10px;
+        text-align:center;
+      }
+		</style>
+	</head>
+	<body>		
+		<table class="table1">
+			<caption>프로축구 경기 일정</caption>
+			<tr>
+				<td>울산</td>
+				<td>울산 vs 인천</td>
+			</tr>		
+			<tr>
+				<td>부산</td>
+				<td>부산 vs 대전</td>
+			</tr>		
+			<tr>
+				<td>서울</td>
+				<td>서울 vs 강원</td>
+			</tr>		
+		</table>
+		<table class="table2">
+				<caption>프로축구 경기 일정</caption>
+				<tr>
+					<td>울산</td>
+					<td>울산 vs 인천</td>
+				</tr>		
+				<tr>
+					<td>부산</td>
+					<td>부산 vs 대전</td>
+				</tr>		
+				<tr>
+					<td>서울</td>
+					<td>서울 vs 강원</td>
+				</tr>		
+			</table>
+	</body>	
+</html>
+```
+
+## empty-cells 속성 - 빈 셀의 표시 여부 지정하기 
+
+- border-collapse: separate를 사용해 셀들을 분리했을 경우, empty-cells 속성을 사용해 내용이 없는 빈 셀들의 표시 여부를 지정합니다.
+
+```css
+empty-cells: show | hide
+```
+
+|속성 값| 설명                             |
+|---|--------------------------------|
+|show| 빈 셀 주위에 테두리를 그려 빈 셀을 표시합니다. 기본값|
+|hide|빈 셀에 테두리를 그리지 않고 비워 둡니다.|
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>표 스타일</title>
+    <style>
+			body{
+				font-family:"맑은 고딕", "고딕", "굴림";
+			}
+			.schedule {
+				border-collapse:separate;
+				margin:20px;
+			}
+			td {
+				border:1px solid black;
+				padding:10px;
+				text-align:center;				
+			}
+			#tb1 td{
+				empty-cells:show;
+			}
+			#tb2 td {
+				empty-cells:hide;
+			}
+		</style>
+	</head>
+	<body>		
+		<table class="schedule" id="tb1">
+			<caption>프로축구 경기 일정</caption>
+			<tr>
+				<td>울산</td>
+				<td>울산 vs 인천</td>
+				<td>TV 중계</td>
+			</tr>		
+			<tr>
+				<td>부산</td>
+				<td>부산 vs 대전</td>
+				<td></td>
+			</tr>		
+			<tr>
+				<td>서울</td>
+				<td>서울 vs 강원</td>
+				<td></td>
+			</tr>					
+		</table>
+
+		<table class="schedule" id="tb2">
+			<caption>프로축구 경기 일정</caption>
+			<tr>
+				<td>울산</td>
+				<td>울산 vs 인천</td>
+				<td>TV 중계</td>
+			</tr>
+			<tr>
+				<td>부산</td>
+				<td>부산 vs 대전</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>서울</td>
+				<td>서울 vs 강원</td>
+				<td></td>
+			</tr>
+		</table>
+	</body>
+</html>
+```
+
+## width, height 속성 - 표 너비와 높이 지정하기
+
+```css
+table {
+    border-collapse: collapse;
+    width: 300px;  
+}
+```
+
+## table-layout 속성 - 콘텐츠에 맞게 셀 너비 지정하기
+
+- table-layout 속성을 이용하면 셀 안의 내용 양에 따라 셀 너비를 변하게 할지, 고정시킬지를 결정할 수 있습니다.
+
+|속성 값|설명|
+|---|----|
+|fixed|셀 너비를 고정합니다. 즉, 셀 내용에 따라 너비가 달라지지 않습니다.|
+|auto|셀 내용에 따라 셀의 너비가 달라집니다. 기본값|
+
+- table-layout 속성을 fixed로 지정하면 다른 셀의 너비 떄문에 셀이 한쪽으로 몰리는 것을 방지할 수 있습니다.
+- table-layout: fixed로 설정해 너비를 고정하면 셀 너비보다 긴 내용은 셀 밖으로 밀려나가 버립니다. 
+- 각 셀의 너비를 고정한 상태에서 셀 너비 안에 셀 내용을 표시하려면 word-break: break-all 속성을 추가해야 합니다. 
+- 또한 예상치 못했던 줄 바꿈이 생기면 높이 값(height)도 예측하기 쉽지 않기 때문에 셀의 height 속성도 auto로 지정해야 합니다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="utf-8">
+		<title>표 스타일</title>
+    <style>
+			body{
+				font-family:"맑은 고딕", "고딕", "굴림";
+			}
+			table, td {
+				border:1px solid #ccc;
+			}
+			.table1 {
+				border-collapse:collapse;
+				width:300px;
+				table-layout:fixed;
+				word-break:break-all;
+				height:auto;
+			}			
+			.table1 td {
+				width:150px;
+				border:1px solid black;
+				padding:5px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Table Layout</h1>
+		<table class="table1">
+			<tr>
+				<td>
+					한글로띄어쓰기없기길게붙여쓰기
+				</td>
+				<td>
+					long_description_without_space				
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>
+```
+
+## text-align 속성 - 셀 안에서 수평 정렬하기
+
+- 셀 안에서 텍스트의 수평 정렬 방법을 지정
+
+```html
+text-align: left | right | center
+```
+
+## vertical-align 속성 - 셀 안에서 수직 정렬하기
+
+- 수직 정렬 방법을 지정하는 속성이기 때문에 inline이나 inline-block으로 배치한 요소의 새로 정렬 방법으로 지정합니다.
+
+```
+vertical-align: baseline | top | bottom | middle | sub | super | text-top | text-bottom | <길이 값> | <백분율 값> 
+```
+
+|속성 값|설명|
+|---|----|
+|baseline|인라인 요소의 기준선을 부모 요소의 기준선(baseline)에 맞춥니다.|
+|sub|인라인 요소의 기준선을 부모 요소의 아래 첨자 위치에 맞춥니다.|
+|super|인라인 요소의 기준선ㅇ늘 부모 요소의 위 첨자 위치에 맞춥니다.|
+|top|인라인 요소의 윗부분을 부모 요소의 윗부분에 맞춥니다.|
+|middle|인라인 요소의 중앙 부분을 부모 요소의 기준선에서 x-높이(소문자 x의 높이 값)의 반만큼 올려서 맞춥니다.|
+|bottom|인라인 요소의 아랫부분을 부모 요소의 아랫부분에 맞춥니다.|
+|text-top|인라인 요소의 윗부분을 부모 요소 글꼴의 윗부분에 맞춥니다.|
+|text-bottom|인라인 요소의 아랫부분을 부모 요소 글꼴의 아랫부분에 맞춥니다.|
+|\<길이 값\>|기준선을 0px로 생각하고 길이 값이 양수면 기준선 위로, 음수면 기준선 아래로 지정한 크기만큼 옮깁니다.|
+|\<백분율 값\>|기준선을 0%로 생각하고 line-height의 몇 %인지에 따라 양수면 위로, 음수면 아래로 옮깁니다.|
+
+- 표의 셀에서 사용할 경우 기준선이나 위, 아래, 가운데 등으로 정렬할 수 있습니다. 
+
+|속성 값|설명|
+|---|----|
+|baseline|셀의 기준선에 내용의 기준선을 맞춥니다.|
+|top|패딩의 위쪽 가장자리에 내용의 윗부분을 맞춥니다.|
+|middle|패딩 박스의 중앙에 내용을 맞춥니다.|
+|bottom|패딩의 아래쪽 가장자리에 내용의 아랫부분을 맞춥니다.|
+
+
+```html
+<style>
+    .va1 { vertical-align:top; }
+    .va2 { vertical-align:bottom; }
+    .va3 { vertical-align:middle; }
+</style>
+
+<table>
+    <caption>vertical-alignment</caption>
+    <tr>
+        <td class="va1">alignment</td>
+        <td class="va2">alignment</td>
+        <td class="va3">alignment</td>
+    </tr>
+</table>
+```
