@@ -12,6 +12,44 @@
 box-sizing: content-box | border-box;
 ```
 
+![image1](https://raw.githubusercontent.com/yonggyo1125/lecture_html_css/master/09%20CSS%20%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83/images/1.png)
+
+|속성 값|설명|
+|---|----|
+|content-box|width 속성 값을 콘텐츠 영역 너비 값으로 사용합니다. 기본 값입니다.|
+|border-box|width 속성 값을 콘텐츠 영역에 테두리까지 포함한 박스 모델 전체 너비 값으로 사용합니다.|
+
+
+```html
+    <style>
+		div {
+			float:left;
+			margin-right:20px;
+		}
+		.box1 {
+			box-sizing:content-box; /* 콘텐츠 영역 기준 */
+			width: 300px; /* 콘텐츠 영역 너비 300px */
+			height: 150px; /* 높이 */
+			margin: 10px; /* 마진 */
+			padding: 30px; /* 패딩 */
+			border:2px solid red; /* 테두리 */
+		}
+		.box2 {
+			box-sizing:border-box;  /* 테두리까지(박스 전체) 기준*/
+			width: 300px; /* 박스 모델 전체 너비 */
+			height: 150px; /* 박스 높이 */
+			margin: 10px; /* 마진 */
+			padding: 30px; /* 패딩 */
+			border: 2px solid red; /* 테두리 */
+		}
+	</style>
+
+    <div class="box1"> box-sizing = "content-box" </div>
+    <div class="box2"> box-sizing = "border-box"</div>
+```
+
+> CSS를 이용해 여러 박스 모델을 화면상에 배치하려면 박스 모델의 너비 값을 정확히 계산해야 합니다. 만약 width 값을 계산하기 어렵다면 box-sizing: border-box로 지정해 박스 모델 너비를 알기 쉽게 바꾸어 놓는 것도 좋은 방법입니다.
+
 --- 
 
 # 다단으로 편집하기
