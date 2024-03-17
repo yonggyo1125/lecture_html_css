@@ -553,3 +553,34 @@ p { margin: 30px 20px 50px; } /* 위 마진 - 30px, 좌우 마진 - 20px, 아래
     <div id="box3"></div>
 ```
 
+## padding 속성 - 콘텐츠 영역과 테두리 사이 여백 설정하기
+
+- 패딩(padding) : 콘텐츠 영역과 테두리 사이의 여백, 다시 말해 테두리 안쪽의 여백이라고 생각하면 됩니다.\
+- padding 속성은 margin 속성과 사용법이 비슷합니다.
+
+```css
+padding-top: <크기> | <백분율> | auto
+padding-right: <크기> | <백분율> | auto
+padding-bottom: <크기> | <백분율> | auto
+padding: <크기> | <백분율> | auto
+```
+
+```html
+    <style>
+		div {
+			width:200px;  /* 너비 */
+			height:auto;  /* 높이 */
+			background:#0094ff;  /* 배경색 */
+			display:inline-block;  /* 가로로 배치 */
+			margin:15px;  /* 마진 - 15px 15px 15px 15px */
+			color:white;  /* 글자색 */
+		}
+		.box1 { padding:10px 30px 10px 30px;}  /* 패딩 - 10px 30px 10px */
+		.box2 { padding:10px 30px;} /* 패딩 - 10px 30px 10px 30px */
+		.box3 { padding:10px;}  /* 패딩 - 10px 10px 10px 10px */
+	</style>
+
+    <div class="box1">패딩(padding)이란 콘텐츠 영역과 테두리 사이의 여백을 말합니다. </div>
+    <div class="box2">패딩(padding)이란 콘텐츠 영역과 테두리 사이의 여백을 말합니다. </div>
+    <div class="box3">패딩(padding)이란 콘텐츠 영역과 테두리 사이의 여백을 말합니다. </div>
+```
