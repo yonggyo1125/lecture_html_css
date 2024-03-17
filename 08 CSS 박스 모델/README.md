@@ -186,5 +186,265 @@ display: none | contents | block | inline | inline-block | table | table-cell �
 ---
 # 테두리 관련 속성들
 
+
+## border-style 속성 - 테두리 스타일 지정하기 
+
+```
+border-style: none | hidden | dashed | dotted | double | groove | inset | outset | ridge | solid 
+```
+
+|속성 값|설명|
+|---|----|
+|none|테두리가 나타나지 않습니다. 기본 값입니다.|
+|hidden|테두리가 나타나지 않습니다. border-collapse: collapse일 경우, 다른 테두리도 표시되지 않습니다.|
+|dashed|테두리를 짧은 선(직선으로 된 점선)으로 표시합니다.|
+|dotted|테두리를 점선으로 표시합니다.|
+|double|테두리를 이중선(겹선)으로 표시합니다. 두 선 사이의 간격은 border-width 값으로 지정합니다.|
+|groove|테두리를 창에 조작한 것처럼 표시합니다. 홈이 파인 듯 입체적으로 보입니다.|
+|inset|border-collapse:separate일 경우, 전체 박스 테두리가 창에 박혀 있는 것처럼 표시되고 border-collapse:collapse일 경우, groove와 똑같이 표시됩니다.|
+|outset|border-collapse:separate일 경우, 전체 박스 테두리가 창에서 튀어나온 것처럼 표시되고 border-collapse:collapse일 경우, ridge와 똑같이 표시됩니다.|
+|ridge|테두리를 창에서 튀어나온 것처럼 표시합니다.|
+|solid|테두리를 실선으로 표시합니다.|
+
+> border-collapse 속성은 표에서 셀과 셀 사이의 테두리가 두 번 그려지는 것을 겹쳐 하나로 표시할 것인지(border-collapse:collapse), 두 개로 표시할 것인지(border-collapse
+> :separate)를 지정하는 것입니다.
+
+```html
+	<style>
+		div {
+			width:200px;
+			height:100px;
+			display:inline-block;
+			margin:15px;			
+			border-width:5px;  /* 테두리 굵기 */
+		}
+		.box1 { border-style:solid; }  /* 실선 */
+		.box2 { border-style:dotted; }  /* 점선 */
+		.box3 { border-style:dashed; }  /* 선으로 된 점선 */
+	</style>
+
+	<div class="box1"> </div>
+	<div class="box2"> </div>
+	<div class="box3"> </div>
+```
+
+## border-width 속성 - 테두리 두께 지정하기
+
+
+```css
+border-top-width: <크기> | thin | medium | thick
+border-right-width: <크기> | thin | medium | thick
+border-botom-width: <크기> | thin | medium | thick
+border-left-width: <크기> | thin | medium | thick
+border-width: <크기> | thin | medium | thick
+```
+- border-width 속성에는 border-top-width, border-right-width, border-bottom-width, border-left-width가 있는데, 이 속성들은 차례대로 위쪽, 오른쪽, 아래쪽, 왼족 테두리 두께를 지정합니다.
+- border-width 속성을 이용해 한거번에 지정할 수도 있습니다.
+- 속성 값이 2개라면 위아래와 좌우를 묶어 지정하고 4개라면 시계 방향(top -> right -> bottom -> left)으로 적용합니다.
+
+```css
+.box1 { border-width: 2px; }
+```
+> 네 방향의 테두리 굵기를 모두 2px로 표시합니다.
+
+```css
+.box2 { border-width: thick thin; }
+```
+> 위와 아래는 thick(굵게), 왼쪽과 오른쪽은 thin(가늘게)으로 표시합니다.
+
+```css
+.box3 { border-width: 5px 10px 15px 20px; }
+```
+> 네 방향의 테두리 굵기를 모두 다르게 해 차례대로 top, right, bottom, left의 두께를 지정합니다.
+
+## border-color 속성 - 테두리 색상 지정하기
+
+```css
+border-top-color: <색상>
+border-right-color: <색상>
+border-bottom-color: <색상>
+border-left-color: <색상>
+border-color: <색상>
+```
+> 박스 모델의 테두리를 지정할 때 border-color 속성만 사용해서는 화면에서 결과를 확인할 수 없고 border-width 속성과 border-style 속성을 이용해 미리 테두리 두께와 스타일을 결정해야 합니다.
+
+- border-color 속성에는 border-top-color, border-right-color, border-bottom-color, border-bottom-color, border-left-color가 있습니다. 이 속성들은 차례대로 위쪽, 오른쪽, 아래쪽, 왼쪽 테두리 색상을 지정합니다.
+- border-color 속성을 이용하면 네 방향 테두리의 색상을 한꺼번에 지정할 수 있습니다.
+
+```html
+    <style>
+		div {
+			width:200px;
+			height:100px;
+			display:inline-block;
+			margin:15px;			
+			border-style:dashed;  /* 테두리 스타일 - 선으로 된 점선 */
+			border-width:2px; /* 테두리 굵기 - 2px */
+		}
+		.box1 { border-color:red;	}  /* 색상 - 빨강 */
+		.box2 { border-color:blue; }  /* 색상 - 파랑 */
+	</style>
+
+    <div class="box1"> </div>
+    <div class="box2"> </div>	
+```
+
+## border 속성 - 테두리 스타일 묶어 지정하기 
+
+```css
+border-top: <두께> <색상> <스타일>
+border-right: <두께> <색상> <스타일>
+border-bottom: <두께> <색상> <스타일>
+border-left: <두께> <색상> <스타일>
+border: <두께> <색상> <스타일>
+```
+
+- 네 방향의 테두리 스타일을 다르게 지정하고 싶다면 border-top이나 border-right 처럼 속성 이름에 방향을 함께 써 따로 지정하고
+- 네 방향의 테두리 스타일이 같다면 같단히 border 속성을 이용할 수 있습니다. 
+- 두께, 색상, 스타일 순서는 상관 없습니다. 
+
+```html
+    <style>
+		h1 {
+			padding-bottom: 5px;
+			border-bottom: 3px solid #ccc; /* 아랫 부분 - 3px짜리 회색 실선*/
+		}
+		p {
+			padding: 10px;
+			border: 3px dotted black; /* 모든 방향 - 3px짜리 검정 점선 */
+		}
+	</style>
+
+    <h1>박스 모델</h1>
+    <p>박스 모델은 실제 콘텐츠 영역, 박스와 콘텐츠 영역 사이의 여백인 패딩(padding), 박스의 테두리(border), 그리고 여러 박스 모델 간의 여백인 마진(margin) 등의 요소로 구성되어 있습니다. </p>	
+```
+
+## border-radius 속성 - 박스 모서리 둥글게 만들기 
+
+```css
+border-top-left-radius: <크기> | <백분율>
+border-top-right-radius: <크기> | <백분율>
+border-bottom-right-radius: <크기> | <백분율>
+border-bottom-left-radius: <크기> | <백분율>
+border-radius: <크기> | <백분율>
+```
+
+- 모서리 원의 반지름이 border-radius 속성 값이 됩니다. 이 값은 크기를 직접 지정하거나 백분율로 지정할 수 있습니다.
+
+|속성 값|설명|
+|---|----|
+|\<크기\>|둥글게 처리할 반지름 크기를 px이나 em같은 단위와 함께 수치로 표시합니다.|
+|\<백분율\>|현재 요소의 크기를 기준으로 둥글게 처리할 반지름 크기를 %로 지정합니다|
+
+```html
+    <style>
+		.round {
+			border:2px solid red; /* 2px짜리 빨강 실선 */
+			border-radius:20px;  /* 모서리 20px 만큼 라운딩 */
+		}
+		#bg {
+			background:url(images/pic1.jpg) no-repeat; /* 배경 이미지 */			
+			background-size:cover;  /* 영역을 다 채우게 */
+		}
+	</style>
+
+    <div class="round"></div>
+    <div class="round" id="bg"></div>
+```
+
+- 네 모서리를 다르게 조절하고 싶다면 border-top-left-radius(왼쪽 위), border-top-right-radius(오른쪽 위), border-bottom-left-radius(왼쪽 아래), border-bottom-right-radius(오른쪽 아래) 속성을 사용해 각 모서리의 반지름 값을 따로 지정할 수도 있습니다. 
+
+
+```css
+.round1 {
+    border: 2px solid blue;  /* 2px짜리 파랑 실선 */
+    border-top-left-radius: 20px;  /* 왼쪽 위 라운딩 - 20px */
+    border-top-right-radius: 20px;  /* 오른쪽 위 라운딩 - 20px */
+}
+```
+
+- border-radius 속성을 이용하면 네 방향 모서리를 한꺼번에 지정할 수 있다.
+
+```css
+.round2 {
+    background: #0c78c8; /* 배경 색 */
+    border-radius: 20px 70px;  /* 라운딩 - 20px 70px 20px 70px */
+}
+```
+
+### 타원 형태로 둥글게 만들기
+
+- 타원 형태로 둥글게 만들고 싶다면 가로 반지름 크기와 세로 반지름 크기를 함께 지정
+
+```css
+border-top-left-radius: <가로 크기> <세로 크기>
+border-top-right-radius: <가로 크기> <세로 크기>
+border-bottom-right-radius: <가로 크기> <세로 크기>
+border-bottom-left-radius: <가로 크기> <세로 크기>
+border-radius: <가로 크기> <세로 크기>
+```
+
+- 각 모서리마다 다로 지정한다면 가로 반지름과 세로 반지름을 차례로 입력하면 되지만 네 방향을 한꺼번에 지정하기 위해 border-radius 속성을 이용할 경우, 가로 반지름과 세로 반지름 사이에 슬래시(/)를 넣어 구분합니다.
+
+```css
+    <style>
+		div {
+			width:200px;
+			height:100px;
+			display:inline-block;
+			margin:15px;
+			border:2px solid black;
+			background:#ffd800;			
+		}
+		.round1 { border-top-left-radius:100px 50px; } /* 왼쪽 위 라운딩 */
+		.round2 { border-bottom-right-radius:50% 30%; }
+		.round3 { border-top-right-radius:50px;}
+	</style>
+	
+	<div class="round1"></div>
+	<div class="round2"></div>
+    <div class="round3"></div>
+```
+
+## box-shadow 속성 - 선택한 요소에 그림자 효과 내기 
+
+```css 
+box-shadow: none | <그림자 값> [, <그림자 값>]*;
+<그림자 값> = <수평 거리> <수직 거리> <흐림 정도> <번짐 정도> <색상> inset 
+```
+
+- box-shadow 속성에서 수평 거리와 수직 거리는 반드시 지정해야 하며(필수) 기타 속성 값은 옵션이므로 필요할 때만 사용하면 됩니다.
+
+|속성 값|설명|
+|---|----|
+|\<수평 거리\>|그림자의 수평 옵셋 거리(수평으로 얼마나 떨어져 있는지)입니다. 양수 값은 요소의 오른쪽, 음수 값은 요소의 왼쪽에 그림자를 만듭니다. 필수 속성입니다.|
+|\<수직 거리\>|그림자의 수직 옵셋 거리(세로로 얼마나 떨어져 있는지)입니다. 양수 값은 요소의 아래쪽, 음수 값은 요소의 위쪽에 그림자를 만듭니다. 필수 속성입니다.|
+|\<흐림 정도\>|그림자의 흐림 정도(blur radius)를 지정합니다. 이 값을 생략하면 0을 기본 값으로 해 진한 그림자를 표시합니다. 이 값이 커질수록 부드러운 그림자를 표시하며 반대로 음수 값은 사용할 수 없습니다.|
+|\<번짐 정도\>|그림자의 번지는 정도를 나타냅니다. 양수 값을 사용하면 그림자가 모든 방향으로 퍼져 나가기 때문에 그림자가 박스보다 크게 표시됩니다. 반대로 음수 값은 그림자가 모든 방향으로 축소되어 보입니다. 기본 값은 0입니다.|
+|\<색상\>|그림자의 색상을 지정합니다. 한 가지만 지정할 수도 있고 공백으로 구분해 여러 개의 색상을 지정할 수도 있습니다. 필요한 경우에만 사용하는 옵션 값이며 기본 값은 현재 글자 색입니다.|
+|\<색상\>|이 키워드를 함께 표시하면 안쪽 그림자로 그립니다. 필요한 경우에만 사용하는 옵션 값입니다.|
+
+- 두 개 이상의 그림자를 사용할 경우, 쉼표로 그림자 속성 값을 구분해 나열하며 앞의 그림자부터 차례로 적용됩니다.
+
+```html
+    <style>
+		div {
+			width:200px;
+			height:100px;
+			display:inline-block;
+			margin:15px;
+			border:2px solid;
+			border-radius:20px;
+		}
+		.box1{ box-shadow:2px -2px 5px 0px black;}
+		.box2{ box-shadow:5px 5px 15px 5px gray;}
+	</style>
+
+    <div class="box1"></div>
+    <div class="box2"></div>
+```
+
 ---
+
 # 여백을 조절하는 속성들
+
