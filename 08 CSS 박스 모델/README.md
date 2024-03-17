@@ -448,3 +448,108 @@ box-shadow: none | <그림자 값> [, <그림자 값>]*;
 
 # 여백을 조절하는 속성들
 
+## margin 속성 - 요소 주변 여백 설정하기 
+
+- 마진(margin) : 현재 요소 주변의 여백입니다. 마진을 이용하면 한 요소와 다른 요소 사이의 간격을 조절할 수 있습니다.
+
+```css
+margin-top: <크기> | <백분율> | auto
+margin-right: <크기> | <백분율> | auto
+margin-bottom: <크기> | <백분율> | auto
+margin-left: <크기> | <백분율> | auto
+margin: <크기> | <백분율> | auto
+```
+
+|속성 값| 설명                                                            |
+|---|---------------------------------------------------------------|
+|\<크기\>| 너비나 높이 값을 px(픽셀)이나 cm(센티미터) 같은 단위와 함께 수치로 지정합니다. 예) margin: 10px;|
+|\<백분율\>| 박스 모델을 포함하고 있는 부모 요소 기준으로 너비나 높이 값을 %로 지정합니다. 예) margin: 0.1%;|
+|auto|display 속성에서 지정한 값에 맞게 적절한 값을 자동으로 지정합니다.|
+
+
+- margin 속성에 값이 하나만 있다면 그 값은 네 방향에 모두 적용됩니다. 
+- 값이 2개라면 첫 번째 값은 서로 마주보는 margin-top과 margin-bottom 값이고 두 번째 값은 margin-right와 margin-left 값입니다. 
+
+```css
+p { margin: 30px 50px; } /* 위 아래 마진 - 30px, 좌우 마진 - 50px */
+p { margin: 50px; } /* 네 방향 마진 모두 50px */
+```
+
+- margin 값이 4개라면 그 순서는 top -> right -> bottom -> left(시계 방향)입니다.
+
+```css
+P { margin: 30px 50px 30px 50px; } 
+```
+
+- 값을 3개만 지정했다면 위쪽 마진, 좌우 마진, 아래쪽 마진
+
+```css
+p { margin: 30px 20px 50px; } /* 위 마진 - 30px, 좌우 마진 - 20px, 아래 마진 - 50px; */
+```
+
+```html
+    <style>
+		div {
+			width:200px;  /* 너비 */
+			height:100px;  /* 높이 */
+			background:#0094ff;  /* 배경색 */
+		}
+		.box1 { margin:30px 50px 30px 50px;}  /* 마진 - 30px 50px 30px 50px */
+		.box2 { margin:30px 50px;} /* 마진 - 30px 50px 30px 50px */
+		.box3 { margin:50px;}  /* 마진 - 50px 50px 50px 50px */
+		.box4 { margin:30px 5px 10px; }  /* 마진 - 30px 5px 10px 5px */
+	</style>
+
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+```
+
+- margin-left와 margin-right를 auto로 지정하면 요소의 너비 값을 뺸 나머지 공간의 좌우 마진을 똑같이 맞춥니다. 이 방법은 웹 요소를 중앙에 배치하려고 할 때 자주 사용합니다.
+
+
+```html
+    <style>
+		.box {
+			width:200px;  /* 너비 */
+			height:300px;  /* 높이 */
+			background:#ff6a00;  /* 배경색 */			 
+			margin:0 auto; /* 마진 - 0 auto 0 auto */
+		}  
+	</style>
+    <div class="box"></div>
+```
+
+## 마진 중첩(margin overlap) 현상
+
+- 요소를 세로로 배치할 경우, 마진과 마진이 만날 때 마진 값이 큰 쪽으로 겹치는 것
+- 이런 형산을 마진 중첩(margin overlap) 또는 마진 상쇄(margin collapse)라고 합니다.
+- 마진 중첩은 아래 마진과 위 마진이 서로 만날 때 큰 마진 값으로 합쳐지는 것이고 오른쪽 마진과 왼쪽 마진이 만날 경우에는 중첩되지 않습니다.
+
+```html
+<style>
+    * {
+      box-sizing:border-box;
+    }
+	div {
+		width:200px;  /* 너비 */
+		height:100px;  /* 높이 */
+  		margin:30px;  /* 마진 */
+	}
+    #box1 {
+      background:rgb(0, 77, 243);
+    }
+    #box2 {
+      background:rgb(255, 72, 0);
+    }
+    #box3 {
+      background:rgb(18, 219, 0);
+    }
+	</style>
+
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div id="box3"></div>
+```
+
