@@ -239,6 +239,185 @@ transform:skewY(ay)
 
 ---
 # 변형과 관련된 속성들 
+- 2차원 변형에 원근감을 추가하면 3차원 변형을 만들 수 있는데, 이때 단순히 z축만 쿠가한다고 해서 원근감이 생기지는 않습니다. 
+- 다시 말해 변형할 때 기준이 되는 지점을 바꾸거나 요소의 원근감을 표현하기 위한 다른 속성도 필요합니다.
+
+## transform-origin 속성 - 변형 기준점 설정하기
+- transform-origin 속성을 이용하면 축이 아닌 특정 지점을 변형의 기준으로 설정할 수 있습니ㅏㄷ. 
+- 2차원 변형과 3차원 변형 모두 사용 가능
+
+```css
+transform-origin: <x축> <y축> <z축> | initial | inherit; 
+```
+
+- 변형 기준점은 다음과 같이 설정할 수 있습니다. 
+
+|속성 값| 설명                                                                 |
+|---|--------------------------------------------------------------------|
+|\<x축\>| 원점 기준의 x 좌푯값으로 길이 값이나 \<백분율\>, left, center, right 중에서 사용할 수 있습니다. |
+|\<y축\>| 원점 기준의 y 좌표값으로 길이 값이나 \<백분율\>, top, center, bottom 중에서 선택할 수 있습니다. |
+|\<z축\>|원점 기준의 z 좌표값으로 값만 사용할 수 있습니다.|
+
+```html
+<style>
+  .rose { transform: rotateZ(10deg); }
+  .ltop .rose { transform-origin: left top; /* 왼쪽 윗부분을 기준으로 변형 */ }
+  .rtop .rose { transform-origin: right top; /* 오른쪽 윗부분을 기준으로 변형 */ }
+  .lbottom .rose { transform-origin: left bottom; /* 왼쪽 아랫부분을 기준으로 변형 */ }
+  .rbottom .rose { transform-origin: right bottom; /* 오른쪽 아랫부분을 기준으로 변형 */ }
+</style>
+
+...
+
+<div class="origin">
+  <div class="ltop">
+    <img src="images/rose.jpg" class="rose">
+  </div>
+</div>
+<div class="origin">
+  <div class="rtop">
+    <img src="images/rose.jpg" class="rose">
+  </div>
+</div>
+<div class="origin">
+  <div class="lbottom">
+    <img src="images/rose.jpg" class="rose">
+  </div>
+</div>
+<div class="origin">
+  <div class="rbottom">
+    <img src="images/rose.jpg" class="rose">
+  </div>
+</div>
+```
+
+## perspective, perspective-origin 속성 - 원근감 표현하기 
+
+- perspective 속성은 3차원 변형에서 사용되는 속성 
+- 원래 위치에서 사용자가 있는 방향이나 반대 방향으로 잡아당기거나 밀어내 원근감을 갖게 합니다.
+- 속성은 0보다 커야 하며 값이 클수록 사용자로부터 멀어집니다. 
+
+```css
+perspective: <크기> | none;
+```
+
+|속성 값|설명|
+|---|----|
+|\<크기\>|원래 위치에서 사용자가 있는 방향으로 얼마나 이동하는지를 픽셀 크기로 지정합니다.|
+|none|perspective를 지정하지 않습니다. 기본값|
+
+- perspective-origin 속성을 사용하면 좀 더 높은 곳에서 원근을 조절하는 듯한 느낌을 만들 수 있습니다. 
+- 이 속성을 사용하려면 perspective 속성이 함께 지정되어 있어야 합니다. 
+
+```css
+perspective-origin: <x축 값> | <y축 값>;
+```
+
+|속성 값|설명|
+|---|----|
+|\<x축 값\>|웹 요소가 x축에서 어디에 위치하는지를 지정합니다. 사용할 수 있는 값은 길이 값이나 백분율, left, right, center 입니다. 기본 값은 50% 입니다.|
+|\<y축 값\>|웹 요소가 y축에서 어디에 위치하는지를 지정합니다. 사용할 수 있는 값은 길이 값이나 백분율, top, center, bottom 입니다. 기본 값은 50% 입니다.|
+
+```html
+<style>
+  .rotatex img { transform: rotateX(50deg); }
+  #pers { perspective: 300px; }
+</style>
+
+<h4>원본 이미지</h4>
+<div>
+  <img src="images/sunset.jpg" alt="">
+</div>
+<div id="no-pers">
+  <div class="rotatex">
+    <img src="images/sunset.jpg" alt="">
+  </div>
+</div>
+<div id="pers">
+  <div class="rotatex">
+    <img src="images/sunset.jpg" alt="">
+  </div>
+</div>
+```
+
+## transform-style 속성 - 3D 변형 적용하기
+
+- 여러가지 변형을 동시에 적용할 때 transform-style 속성을 사용하면 부모 요소에 적용한 3D 변형을 하위 요소에도 적용할 수 있습니다. 
+
+```css
+transform-style: flat | preserve-3d
+```
+
+|속성 값|설명|
+|---|----|
+|flat|하위 요소를 평면으로 처리합니다.|
+|perserve-3d|하위 요소들에 3D효과를 적용합니다.|
+
+```html
+<style>
+  .box1 {
+    background: #82cbd8;
+    transform: rotateY(45deg);  /* y축을 기준으로 회전 */
+  }
+  .box2 {
+    background: #0d6097;
+    transform-origin: left top;  /* 왼쪽 윗부분 꼭지점을 기준으로 x축 회전 */
+    transform: rotateX(45deg);
+  }
+  #tr-style1 { transform-style: flat; }
+  #tr-style2 { transform-style: preserve-3d;
+</style>
+
+...
+
+<div class="container">
+  <div class="box1" id="tr-style1">
+    <div class="box2"></div>
+  </div>
+</div>
+<div class="container">
+  <div class="box1" id="tr-style2">
+    <div class="box2"></div>
+  </div>
+</div>
+```
+
+## backface-visibility 속성 - 요소의 뒷면 표시하기
+
+- backface-visibility 속성으로 요소의 뒷면, 즉 반대쪽 면을 표시할 것인지를 결정합니다. 
+
+```css
+backface-visibility: visible | hidden;
+```
+
+|속성 값|설명|
+|---|----|
+|visible|뒷면을 표시합니다. 기본값|
+|hidden|뒷면을 표시하지 않습니다.|
+
+```html
+<style>
+  .box {
+    background: #82cbd8;
+    transform: rotateY(135deg);
+  }
+  #back1 { backface-visibility: hidden; }
+  #back2 { backface-visibility: visible; }
+</style>
+
+...
+
+<div class="container">
+  <div class="box" id="back1">
+    <h1>BACK</h1>
+  </div>
+</div>
+<div class="container">
+  <div class="box" id="back2">
+    <h1>BACK</h1>
+  </div>
+</div>
+```
 
 ---
 # 트랜지션 
