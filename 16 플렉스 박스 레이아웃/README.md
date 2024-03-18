@@ -171,4 +171,46 @@ order: 0  | 숫자
 justify-content: flex-start | flex-end | center | space-between | space-around 
 ```
 
+![image1](https://raw.githubusercontent.com/yonggyo1125/lecture_html_css/master/16%20%ED%94%8C%EB%A0%89%EC%8A%A4%20%EB%B0%95%EC%8A%A4%20%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83/images/1.png)
 
+## align-items 속성, align-self 속성 - 교차측 기준의 배치 방법 지정하기
+
+```css
+align-items: stretch | flex-start | flex-end | center | baseline
+```
+
+![image2](https://raw.githubusercontent.com/yonggyo1125/lecture_html_css/master/16%20%ED%94%8C%EB%A0%89%EC%8A%A4%20%EB%B0%95%EC%8A%A4%20%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83/images/2.png)
+
+- <code>align-self</code> 속성을 이용하면 플렉스 항목을 개별적으로 배치할 수 있습니다.
+- 플렉스 컨테이너에서 플렉스 항목 전체의 배치 방법을 결정하지만 <code>align-self</code> 속성으로 특정 플렉스 항목만 배치 방법을 바꿀 수 있습니다. 
+
+```css
+align-self : auto | stretch | flex-start | flex-end | center | baseline
+```
+
+- align-self의 속성 값은 플렉스 항목의 부모 속성 값을 상속받는 auto를 제외하면 align-items에서의 속성 값과 같습니다.
+- 교차축의 배치 방법 지정하기
+
+```html
+<style>
+    #container {
+        display: flex;
+        align-items: center;
+    }
+    
+    #box1 { 
+       align-self: flex-start; /* 첫 번째 박스만 교차축의 시작점에 배치 */     
+    }
+</style>
+```
+
+## align-content 속성 - 여러 줄일 때의 배치 방법 지정하기 
+
+- 플렉스 항목이 여러 줄에 걸쳐 표시될 때 align-content 속성을 사용하면 교차축 방향의 배치 방법을 지정할 수 있습니다.
+- align-content 속성에서 사용하는 값은 justify-content의 속성 값과 같습니다.
+
+```css
+align-content: flex-start | flex-end | center | space-between | space-around
+```
+
+![image3](https://raw.githubusercontent.com/yonggyo1125/lecture_html_css/master/16%20%ED%94%8C%EB%A0%89%EC%8A%A4%20%EB%B0%95%EC%8A%A4%20%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83/images/3.png)
