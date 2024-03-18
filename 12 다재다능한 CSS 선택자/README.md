@@ -360,3 +360,243 @@ h1~ul {
 # 가상 클래스와 가상 요소
 
 ## 사용자 동작에 반응하는 가상 클래스
+
+- 특정 동작을 할 때 스타일이 바뀌도록 만들고 싶다면 가상 클래스 선택자를 사용합니다. 
+
+- (1) **:link 가상 클래스 선택자** - 방문하지 않은 링크에 스타일 적용
+  - 텍스트 링크는 기본적으로 파란색(blue) 글자와 밑줄로 표시되는데 링크의 밑줄을 없애거나 색상을 바꾸려고 할 때 :link 선택자를 사용합니다.
+
+- (2) **:visited 가상 클래스 선택자** - 방문한 링크에 스타일 적용
+  - 방문한 텍스트 링크는 기본적으로 자주색(purple)으로 표시되는ㄴ데 사용자가 방문했던 링크도 일반 텍스트 링크와 색상이 달라지지 않게 하려면 :visited 선택자를 사용해 조절합니다. 
+
+- (3) **:hover 가상 클래스 선택자** - 웹 요소에 마우스 커서를 올려놓을 때의 스타일 적용 
+- (4) **:active 가상 클래스 선택자** - 웹 요소를 활성화했을 때의 스타일 적용 
+    - 링크나 이미지 등 웹 요소를 활성화했을 때(누르고 있을 때)의 스타일을 지정합니다. 
+- **:focus 가상 클래스 선택자** - 웹 요소에 초점이 맞추어졌을 때의 스타일 적용
+  - 예를 들어 아이디를 입력하기 위해 텍스트 필드 안에 마우스 커서를 갖다 놓거나 [Tab]을 눌러 초점을 이동했을 때의 스타일을 지정합니다.
+  - (1) ~ (4) 네 가지를 모두 정의한다면 :link 선택자부터 정의하고 :visited, :hover, :active 순서대로 정의합니다. 이 순서가 바뀌면 스타일을 정의하더라도 제대로 적용되지 않습니다.
+
+```html
+<style>
+  .navi a:link, .navi a:visited {
+    font-size:14px;
+    padding: 10px; 
+    text-decoration: none;  /* 밑줄 없음 */
+
+  }
+  .navi a:hover,  .navi a:focus {
+    background-color:#222;  /* 배경 색 */
+    color:#fff;  /* 글자 색 */
+  }
+
+  .navi a:active {
+    background-color:#f00;  /* 배경 색 */
+  }
+</style>
+
+...
+
+<nav class="navi">
+  <ul>
+    <li><a href="#">이용 안내</a></li>
+    <li><a href="#">객실 소개</a></li>
+    <li><a href="#">예약 방법 및 요금</a></li>
+    <li><a href="#">예약하기</a></li>
+  </ul>
+</nav>  
+```
+
+## UI 요소 상태에 따른 가상 클래스 
+- 사용자의 동작뿐만 아니라 웹 요소의 상태에 따라 스타일을 지정할 때도 가상 클래스 선택자를 사용합니다.
+- UI(User Interface) 요소의 상태에 따라 가상 클래스는 웹 사이트나 앱 화면을 디자인할 때 웹 요소의 상태에 따라 스타일을 지정하기 위해 사용
+
+- (1) **:enabled와 :disabled 가상 클래스 선택자** - 요소를 사용할 수 있을 때와 없을 때의 스타일 지정
+- (2) **:checked 가상 클래스 선택자** - 라디오 박스나 체크 박스에서 해당 항목을 선택했을 때의 스타일 지정
+
+```html
+<style>
+  input:disabled {		 
+    background:#ddd;
+    border:1px #ccc solid;
+  }
+  input:checked + span {
+    color:blue;
+  }
+</style>
+
+...
+
+<form>
+  <fieldset>
+    <legend>사용자 정보</legend>
+    <label>이름 <input type="text" disabled></label>
+  </fieldset>
+  <fieldset>
+    <legend>신청 과목</legend>
+    <p>이 달에 신청할 과목을 선택하세요</p>
+    <label><input type="radio" name="subject" value="speaking"><span>회화</span></label>
+    <label><input type="radio" name="subject" value="grammar"><span>문법</span></label>
+    <label><input type="radio" name="subject" value="writing"><span>작문</span></label>
+  </fieldset>
+</form>
+```
+
+## 구조 가상 클래스
+
+- 웹 문서 구조를 기준으로 특정 위치에 있는 요소를 찾아 스타일을 지정할 때 사용하는 가상 클래스 선택자
+
+- (1) **:root 가상 클래스 선택자** - 문서 전체에 적용하기
+  - 문서 안의 루트(root) 요소에 스타일을 적용합니다. HTML 문서에서는 루트 요소가 HTML이므로 HTML 요소에 스타일이 적용됩니다.
+- (2) **:nth-child(n)와 :nth-last-child(n) 가상 클래스 선택자** - 자식 요소의 위치에 따라 스타일 적용하기 
+  - :nth-child(n)는 앞에서 부터 n번째 자식 요소에 스타일을 적용 
+  - :nth-last-child(n)는 끝에서 부터 n번째인 자식 요소에 스타일을 적용 
+  - an+b처럼 수식을 사용할 수도 있는데 이때 n값은 0부터 차례대로 정수를 대입해 계산합니다.
+  - 다만 위치에 따라 스타일을 적용하는 선택자는 해당 요소들이 모두 한 부모 요소를 갖고 있어야 합니다. 즉, 문서 구조로 표시했을 때 모두 같은 레벨의 요소여야 합니다.
+
+```html
+/* div 요소 안에서 세 번째 자식 요소인 p 요소에 스타일 적용 */
+div p:nth-child(3)
+
+/* div 요소 안에서 홀수 번째로 나타나는 자식 요소인 p 요소에 스타일 적용 */
+div p:nth-child(odd), div p:nth-child(2n+1)
+
+/* div 요소 안에서 짝수 번째로 나타나는 자식 요소인 p 요소에 스타일 적용 */
+div p:nth-child(even), div p:nth-child(2n+0), div p:nth-child(2n)
+```
+
+```html
+<style>
+  table tr:nth-child(2n+1) {
+    background:lightgray;
+    color:black;
+  }
+</style>
+
+...
+
+<h1>건강에 좋은 건강 식품</h1>
+<table>
+  <tr>
+    <td>블루베리</td>
+  </tr>
+  <tr>
+    <td>귀리</td>
+  </tr>
+  <tr>
+    <td>토마토</td>
+  </tr>
+  <tr>
+    <td>시금치</td>
+  </tr>
+  <tr>
+    <td>적포도주</td>
+  </tr>
+  <tr>
+    <td>견과류</td>
+  </tr>
+  <tr>
+    <td>브로콜리</td>
+  </tr>
+  <tr>
+    <td>연어</td>
+  </tr>
+  <tr>
+    <td>마늘</td>
+  </tr>
+  <tr>
+    <td>녹차</td>
+  </tr>
+</table>
+```
+
+- (3) **:nth-of-type(n), :nth-last-of-type(n) 가상 클래스 선택자** - 특정 태그 위치에 스타일 적용하기
+  - :nth-of-type(n)은 앞에서부터 세어 n번째 요소에 스타일 적용
+  - :nth-last-of-type(n)은 끝에서부터 세어 n번째 요소에 스타일 적용 
+
+- (4) **:first-child, :last-child 가상 클래스 선택자** - 첫 번째, 마지막 요소에 스타일 적용하기
+  - :first-child는 첫 번째 자식 요소를 선택해 스타일을 적용 
+  - :last-child는 마지막 자식 요소에 스타일을 적용 
+
+
+```html
+<style>
+  /* 첫번째 항목의 스타일 */
+  ul.navi li:first-child {
+    border-top-left-radius: 1em;/* 왼쪽 상단 코너를 부드럽게 */
+    border-bottom-left-radius: 1em;/* 왼쪽 하단 코너를 부드럽게 */
+  }
+  
+  /* 마지막 항목의 스타일 */
+  ul.navi li:last-child {
+    border-top-right-radius: 1em; /*오른쪽 상단 코너를 부드럽게 */
+    border-bottom-right-radius: 1em;/* 오른쪽 하단 코너를 부드럽게 */
+  }
+</style>
+
+...
+
+<ul class="navi">
+  <li id="home"><a href="#">Home</a></li>
+  <li id="html"><a href="#">HTML5</a></li>
+  <li id="css"><a href="#">CSS3</a></li>
+  <li id="jquery"><a href="#">JQuery</a></li>
+</ul> 
+```
+
+- (5) :first-of-type, :last-of-type 가상 클래스 선택자 - 형제 관계 요소의 위치에 따라 스타일 적용하기
+  - 형제 관계인 요소 중에서 :first-of-type은 첫 번째 요소, :last-of-type은 마지막 요소에 스타일을 적용합니다. 
+
+- (6) :only-child, :only-ot-type 가상 클래스 선택자 - 하나뿐인 자식 요소에 스타일 적용하기
+  - :only-child는 부모 요소 안의 자식 요소가 유일하게 하나일 때 스타일 적용 
+  - :only-of-type은 :only-child와 비슷한데 해당 요소가 유일한 요소일 때 스타일을 적용합니다. 
+
+```css
+p:only-child { color: green; }
+p:only-of-type { font-weight: bold; }
+```
+
+## 그 외 가상 클래스
+
+- (1) **:target 가상 클래스 선택자** - 앵커 목적지에 스타일 적용하기
+  - 같은 문서 안에서 다른 위치로 이동할 떄는 앵커(anchor)를 이용합니다. 
+  - 이때 :target 선택자를 이용하면 앵커로 연결된 부분, 즉 앵커의 목적지가 되는 부분의 스타일을 지정할 수 있습니다. 
+
+```css
+#intro:target { background-color: yellow; }
+```
+
+- (2) **:not 가상 클래스 선택자** - 특정 요소가 아닐 때 스타일 적용하기 
+  - not은 '괄호 안에 있는 요소를 제외한' 이라는 의미입니다. 
+
+```css
+p:not(#ex) { color: blue; }
+```
+
+## 가상 요소
+- 내용의 일부만 선택해 스타일을 적용할 때 사용
+- 가상 요소는 가상 클래스와 구별하기 위해 클래스 이름 앞에 콜론 두개(::)를 붙여 표시합니다. 
+- (1) **::first-line 요소와 ::first-letter 요소** - 첫 번째 줄, 첫 번째 글자에 스타일 적용하기
+- (2) **::before, ::after 요소** - 내용의 앞 뒤에 콘텐츠 추가하기
+
+```html
+<style>
+  li.hot::after {
+    content:"NEW!!";
+    font-size:x-small;
+    padding:2px 4px;
+    margin: 0 10px;
+    border-radius:2px;
+    background:#f00;
+    color:#fff;
+  }
+</style>
+
+...
+
+<ul>
+  <li class="hot">제품 A</li>
+  <li>제품 B</li>
+  <li>제품 C</li>
+  <li class="hot">제품 D</li>
+</ul>
+```
