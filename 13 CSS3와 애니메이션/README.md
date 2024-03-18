@@ -422,5 +422,190 @@ backface-visibility: visible | hidden;
 ---
 # 트랜지션 
 
----
-# 애니메이션 
+> 트랜지션(transition)은 변형을 넘어 하나의 스타일에서 다른 스타일로 완전히 바꿉니다. 이렇게 스타일이 바뀌는 시간을 조절하면 애니메이션 효과도 낼 수 있습니다.
+
+## 트랜지션이란? 
+- 트랜지션(transition)이란 웹 요소의 배경 색이 바뀌거나 도형의 테두기가 원형으로 바뀌는 것처럼 스타일 속성이 바뀌는 것을 말합니다. 
+- 시간에 따라 웹 요소의 스타일 속성이 조금씩 바뀌는 것을 트랜지션이라고 합니다.
+
+|속성|설명|
+|---|----|
+|transition-property|트랜지션 대상을 설정합니다.|
+|transition-duration|트랜지션 진행 시간을 설정합니다.|
+|transition-timing-function|트랜지션 속도 곡선을 설정합니다.|
+|transition-delay|트랜지션 지연 시간을 설정합니다.|
+|transition|transition-property와 transition-duration, transition-timing-function, transition-delay 속성을 한꺼번에 설정합니다.|
+
+## transition-property 속성 - 트랜지션을 적용할 속성 지정하기 
+
+- 트랜지션을 어느 속성에 적용할 것인지 선택하는 것 
+- transition-property를 사용하지 않을 경우, 모든 속성이 트랜지션 대상이 되고 특정 속성 이름을 입력하면 그 속성에 트랜지션이 적용됩니다. 
+
+|속성 값| 설명                                                                                                                    |
+|---|-----------------------------------------------------------------------------------------------------------------------|
+|all| all 값을 사용하거나 transition-property를 생략할 경우, 요소의 모든 속성이 트랜지션 대상이 됩니다. 기본 값                                               |
+|none| 트랜지션 동안 아무 속성도 바뀌지 않습니다.                                                                                              |
+|\<속성 이름\>| 트랜지션 효과를 적용할 속성 이름을 지정합니다. 예를 들어 배경 색만 바꿀 것인지, width 값만 바꿀것인지 원하는 대상만 골라 지정할 수 있습니다. 속성이 여러 개일 경우, 쉼표(,)로 구분해서 나열합니다. |
+
+
+```css
+transition-property: all; /* 해당 요소의 모든 속성에 트랜지션 적용 */
+transition-property: background-color; /* 해당 요소의 배경 색에 트랜지션 적용 */
+transition-property: width, height; /* 해당 요소의 너비와 높이에 트랜지션 적용 */
+```
+
+## transition-duration 속성 - 트랜지션 진행 시간 지정하기
+
+- 진행 시간을 지정해야 그 시간 동안 속성이 자연스럽게 바뀌는 애니메이션 효과를 만들 수 있습니다. 
+- 시간 단위는 초(seconds) 또는 밀리초(milliseconds)입니다. 
+- 트랜지션 대상이 되는 속성이 여러 개라면 트랜지션 진행 시간도 쉼표(,)로 구분해 순서대로 여러 개를 지정할 수 있습니다.
+
+```html 
+<style>
+  .tr1 {
+	width: 100px;
+	height: 100px;
+	background-color: blue;
+	border: 1px solid black;
+	transition-property: width, height; /* 너비와 높이에 트랜지션 적용 */
+	transition-duration: 2s, 1s;  /* 너비 값은 2초, 높이 값은 1초에 걸쳐 트랜지션 */	
+  }
+</style>
+
+
+<div class="tr1"></div>
+```
+
+![image2](https://raw.githubusercontent.com/yonggyo1125/lecture_html_css/master/13%20CSS3%EC%99%80%20%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98/images/2.png)
+
+- 처음 2개 속성(background-color, transform)에 2s와 3s가 적용되고 다시 2개 속성(width, height)에 2s, 3s가 적용됩니다. 
+- 만약 다른 속성이 있다면 다시 2s,. 
+
+```html
+<style>
+  tr1 {
+		width: 100px;
+		height: 100px;
+		background-color: red;
+		border: 1px solid black;
+		transition-property: background-color, transform, width, height;
+		transition-duration: 2s, 3s;
+  }
+  .tr1:hover {
+		width: 200px;
+		height: 200px;
+		background-color: #ff6e5f;
+		transform: rotate(180deg);
+  }
+</style>
+
+...
+
+<div class="tr1"><h1>!</h1> </div>
+```
+
+## transition-timing-function 속성 - 트랜지션 속도 곡선 지정하기 
+
+- 시작과 중간, 끝에서의 속도를 지정해 속도 곡선을 만들 수 있습니다. 
+- 속도 곡선은 미리 정해진 키워드나 <code>베지에 곡선</code>을 이용해 표현합니다.
+
+```css
+transition-timing-function: linear | ease | ease-in | ease-out | ease-in-out | cubic-bezier(n, n, n, n)
+```
+> 베지에 곡선은 n개의 점을 이용해 (n-1)차 곡선을 만들어 내는 함수입니다.
+
+|속성 값|설명|
+|---|----|
+|linear|시작부터 끝까지 똑같은 속도로 트랜지션을 진행합니다.|
+|ease|처음에는 천천히 시작하고 점점 빨라지다가 마지막에는 천천히 끝납니다. 기본값|
+|ease-in|시작을 느리게 합니다.|
+|ease-out|느리게 끝냅니다.|
+|ease-in-out|느리게 시작하고 느리게 끝납니다.|
+|cubic-bezier(n,n,n,n)|베지에 함수를 직접 정의해 사용합니다. n에서 사용할 수 있는 값은 0~1입니다.|
+
+
+```css
+transition-timing-function: linear;
+```
+
+## transition-delay 속성 - 지연 시간 설정하기
+
+- 트랜지션이 언제부터 시작할 것인지 설정합니다.
+- 지정하는 시간만큼 기다렸다가 트랜지션이 시작됩니다. 
+- 사용할 수 있는 값은 초(seconds)나 밀리초(milliseconds)이며 기본값은 0s입니다.
+
+```css 
+#no-delay {
+  transition-duration: 3s;  /* 즉시 실행되는 트랜지션(no-delay 상자) */
+}
+
+#delay {
+  transition-duration: 3s; 
+  transition-delay: 1s;  /* 1초 늦게 실행되는 두 번째 트랜지션(delay 상자) */
+}
+```
+
+## transition 속성 - 트랜지션 속성 한꺼번에 표기하기 
+
+```
+transition: <transition-property 값> | <transition-duration 값> | <transition-timing-function 값> | <transition-delay 값>
+```
+
+```html
+<style>
+	.tr1 {
+		width: 200px;
+		height: 200px;
+		background-color: red;
+		border: 1px solid black;
+		transition: 2s ease-in;
+	}
+	.tr1:hover {
+		width: 100px;
+		height: 100px;
+		background-color: #ff6e5f;
+		transform: rotate(270deg);			
+	}
+</style>
+
+...
+
+<div class="tr1"></div>
+```
+
+## 두 개 이상의 변형 동시에 사용하기
+
+> 트랜지션이나 애니메이션을 만들다 보면 이동하면서 확대하거나 회전하면서 축소하는 등 두 개 이상의 변형을 동시에 사용하는 경우가 있습니다. 이럴 때는 transform 속성에 여러 개의 속성을 나열하면 됩니다. 예를 들어 크기를 2배로 확대하면서 x축을 기준으로 180º 회전시키려면 2차원 변형 함수 scale()과 3차원 변형 함수 rotateX()를 사용해야 합니다. 
+
+```css
+transform: scale(2);
+perspective: 120px;
+transform: rotateX(100deg);
+```
+
+- 이 변형 함수들을 동시에 적용하려면 transform 속성을 이용해 다음과 같이 작성하면 됩니다.
+
+```css
+transform: scale(2) perspective(120px) rotateX(180deg);
+```
+
+```html
+<style>
+  div {
+          width:100px;
+          height:100px;
+          margin:100px;
+          background:#0094ff;
+  }
+  .box {
+      transition: 2s ease-in;
+  }
+  .box:hover {
+      transform: scale(2) perspective(120px) rotateX(180deg);			
+  }
+</style>
+
+... 
+
+<div class="box"></div>
+```
