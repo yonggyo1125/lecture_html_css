@@ -48,7 +48,7 @@
   - \<태그 속성="속성 값" 속성="속성 값" ..\> 형태로 사용할 수 있습니다.
 
 ```html
-<img src="images/first.png" width="150" height="200" alt="시계 이미지"[first-result.html](..%2F..%2F..%2F%C7%D0%BD%C0%2Fhtml5-css3-master%2F01%2Ffirst-result.html)>
+<img src="images/first.png" width="150" height="200" alt="시계 이미지">
 ```
 
 - 포함관계를 명확히 합니다. 
